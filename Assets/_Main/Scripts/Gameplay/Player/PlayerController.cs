@@ -5,52 +5,52 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerManager manager;
     private PlayerMovementData movementData;
-
-    private Vector2 inputMoveDirection;
-
-    // private Vector2 inputLookPoint;
-
-    // private float turnSmoothVelocity = 0f;
+    private PlayerParameters parameters;
 
     private void Start()
     {
         manager = GetComponent<PlayerManager>();
         movementData = manager.Data.Movement;
+        parameters = manager.Parameters;
     }
 
     private void Update()
     {
-        inputMoveDirection = manager.Input.Player.Move.ReadValue<Vector2>().normalized;
-        // inputLookPoint = manager.MainCamera.ScreenToWorldPoint(manager.PlayerInputMap.FindAction("LookPoint", true).ReadValue<Vector2>());
+        parameters.MoveDirection = manager.Input.Player.Move.ReadValue<Vector2>().normalized;
+
+        if (parameters.MoveDirection != Vector2.zero)
+        {
+            if (parameters.MoveDirection.x > 0)
+                parameters.LookDirection = Vector2.right;
+            else if (parameters.MoveDirection.x < 0)
+                parameters.LookDirection = Vector2.left;
+            else if (parameters.MoveDirection.y > 0)
+                parameters.LookDirection = Vector2.up;
+            else if (parameters.MoveDirection.y < 0)
+                parameters.LookDirection = Vector2.down;
+        }
+        if (parameters.LookDirection.x > 0)
+            parameters.LastFacingDirection = 1;
+        else if (parameters.LookDirection.x < 0)
+            parameters.LastFacingDirection = -1;
     }
 
     private void FixedUpdate()
     {
-        // // Look
-        // Vector2 lookAtDelta = inputLookPoint - (Vector2)transform.position;
-        // float desiredLookAngle = Mathf.Atan2(lookAtDelta.y, lookAtDelta.x) * Mathf.Rad2Deg;
-
-        // float trueLookAngle = transform.rotation.eulerAngles.z;
-        // trueLookAngle = Mathf.SmoothDampAngle(trueLookAngle, desiredLookAngle, ref turnSmoothVelocity, 1f / manager.Data.Combat.TurnRate);
-        // transform.rotation = Quaternion.Euler(0f, 0f, trueLookAngle);
-
-        // manager.Parameters.Movement.LookAngle = trueLookAngle;
-        // manager.Parameters.Movement.LookDirection = transform.right;
-
         // Move
         Vector3 force;
-        if (inputMoveDirection == Vector2.zero)
+        if (parameters.MoveDirection == Vector2.zero)
         {
             force = -manager.Body.linearVelocity.normalized * movementData.Deceleration;
             force = Vector2.ClampMagnitude(force, manager.Body.linearVelocity.magnitude / Time.fixedDeltaTime);
         }
-        else if (Vector2.Dot(inputMoveDirection, manager.Body.linearVelocity.normalized) < -Mathf.Cos(Mathf.PI / 4))
+        else if (Vector2.Dot(parameters.MoveDirection, manager.Body.linearVelocity.normalized) < -Mathf.Cos(Mathf.PI / 4))
         {
-            force = inputMoveDirection * movementData.TurnAcceleration;
+            force = parameters.MoveDirection * movementData.TurnAcceleration;
         }
         else
         {
-            force = inputMoveDirection * movementData.Acceleration;
+            force = parameters.MoveDirection * movementData.Acceleration;
         }
 
         manager.Body.AddForce(force, ForceMode2D.Force);

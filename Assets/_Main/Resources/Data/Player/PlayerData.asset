@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movement:
     MaxSpeed: 3
-    Acceleration: 18
-    Deceleration: 20
-    TurnAcceleration: 25
+    Acceleration: 30
+    Deceleration: 30
+    TurnAcceleration: 40

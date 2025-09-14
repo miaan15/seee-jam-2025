@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
 
 public enum PlayerState
 {
 }
 
+[SerializeField]
+[Serializable]
 public class PlayerParameters
 {
-    public PlayerMovementParameters Movement = new PlayerMovementParameters();
-}
+    public Vector2 MoveDirection = Vector2.down;
 
-public class PlayerMovementParameters
-{
-    public Vector2 LookDirection = Vector2.right;
-    public float LookAngle = 0f;
+    public Vector2 LookDirection = Vector2.down;
+    public int LastFacingDirection = 1;
 }
