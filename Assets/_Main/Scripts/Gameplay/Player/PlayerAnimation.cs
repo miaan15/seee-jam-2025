@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private PlayerManager manager;
-    private PlayerMovementData movementData;
     private PlayerParameters parameters;
 
     private Animator animator;
@@ -12,7 +11,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Start()
     {
         manager = GetComponent<PlayerManager>();
-        movementData = manager.Data.Movement;
         parameters = manager.Parameters;
 
         animator = manager.Animator;
@@ -29,43 +27,34 @@ public class PlayerAnimation : MonoBehaviour
             manager.SpriteTransform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if (parameters.MoveDirection == Vector2.zero)
+        if (parameters.IsAttacking)
         {
-            if (parameters.LookDirection.x > 0)
-            {
-                animator.Play("IdleSide");
-            }
-            else if (parameters.LookDirection.x < 0)
-            {
-                animator.Play("IdleSide");
-            }
-            else if (parameters.LookDirection.y > 0)
-            {
-                animator.Play("IdleUp");
-            }
-            else if (parameters.LookDirection.y < 0)
-            {
-                animator.Play("IdleDown");
-            }
+            animator.Play("Attack" + GetDirectionalAnimationString());
+            return;
         }
         else
         {
-            if (parameters.LookDirection.x > 0)
+            if (parameters.MoveDirectionInput == Vector2.zero)
             {
-                animator.Play("RunSide");
+                animator.Play("Idle" + GetDirectionalAnimationString());
             }
-            else if (parameters.LookDirection.x < 0)
+            else
             {
-                animator.Play("RunSide");
-            }
-            else if (parameters.LookDirection.y > 0)
-            {
-                animator.Play("RunUp");
-            }
-            else if (parameters.LookDirection.y < 0)
-            {
-                animator.Play("RunDown");
+                animator.Play("Run" + GetDirectionalAnimationString());
             }
         }
+    }
+
+    private string GetDirectionalAnimationString()
+    {
+        if (parameters.LookDirection.x > 0)
+            return "Side";
+        else if (parameters.LookDirection.x < 0)
+            return "Side";
+        else if (parameters.LookDirection.y > 0)
+            return "Up";
+        else if (parameters.LookDirection.y < 0)
+            return "Down";
+        return "Down";
     }
 }

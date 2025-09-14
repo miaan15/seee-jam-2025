@@ -17,3 +17,7 @@ MonoBehaviour:
     Acceleration: 30
     Deceleration: 30
     TurnAcceleration: 40
+  Combat:
+    AttackDuration: 0.5
+    AttackCooldown: 0.5
+    AttackDamage: 0

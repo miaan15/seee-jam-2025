@@ -578,9 +578,13 @@ MonoBehaviour:
   SpriteTransform: {fileID: 0}
   Data: {fileID: 11400000, guid: e0a84dfdbd875624fa24e7a3d931b004, type: 2}
   Parameters:
+    MoveDirectionInput: {x: 0, y: -1}
+    AttackInput: 0
     MoveDirection: {x: 0, y: -1}
     LookDirection: {x: 0, y: -1}
     LastFacingDirection: 1
+    CanAttack: 1
+    IsAttacking: 0
 --- !u!114 &1184422061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,11 +706,11 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0, y: 0, z: 0}
+  Damping: {x: 0.5, y: 0, z: 0}
   Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
+    Enabled: 1
+    Time: 0.4
+    Smoothing: 6
     IgnoreY: 0
 --- !u!114 &1270259105
 MonoBehaviour:
