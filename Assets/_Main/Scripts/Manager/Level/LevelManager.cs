@@ -1,19 +1,17 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
+public enum LevelLayoutFlag
+{
+    None = 0,
+    Player,
+    Enemy,
+    Wall,
+}
 
 [RequireComponent(typeof(WallManager))]
 public class LevelManager : MonoBehaviour
 {
-    public enum LevelLayoutFlag
-    {
-        None = 0,
-        Player,
-        Enemy,
-        Wall,
-    }
-
     private WallManager wallManager;
 
     [Header("References")]
@@ -23,15 +21,11 @@ public class LevelManager : MonoBehaviour
     public int Width;
     public int Height;
 
-    private List<LevelLayoutFlag> flags = new();
-    public LevelLayoutFlag GetFlag(int x, int y)
-    {
-        return flags[y * Width + x];
-    }
-    public void SetFlag(int x, int y, LevelLayoutFlag flag)
-    {
-        flags[y * Width + x] = flag;
-    }
+    [Space(10)]
+    public Vector2Int PlayerStartPos;
+
+    private LevelLayout layout;
+    public LevelLayout Layout => layout;
 
     private Tilemap wallInstance;
 
@@ -42,14 +36,13 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Make();
+        layout = new(Width, Height);
+        Load();
     }
 
-    public void Make()
+    public void Load()
     {
-        flags = new(Width * Height);
-        flags.AddRange(Enumerable.Repeat(LevelLayoutFlag.None, Width * Height));
-        flags.TrimExcess();
+        layout.Reset(Width, Height);
 
         HandleMakeWall();
 
@@ -75,7 +68,7 @@ public class LevelManager : MonoBehaviour
 
                 if (wallInstance.HasTile(cellPos))
                 {
-                    SetFlag(x, y, LevelLayoutFlag.Wall);
+                    layout.SetFlag(x, y, LevelLayoutFlag.Wall);
                 }
             }
         }
@@ -83,20 +76,13 @@ public class LevelManager : MonoBehaviour
 
     private void DebugLogFlags()
     {
-        if (flags == null || flags.Count != Width * Height)
-        {
-            Debug.LogWarning("Flags list is not properly initialized.");
-            return;
-        }
-
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
         for (int y = Height - 1; y >= 0; y--)
         {
             for (int x = 0; x < Width; x++)
             {
-                int index = y * Width + x;
-                char c = flags[index] switch
+                char c = layout.GetFlag(x, y) switch
                 {
                     LevelLayoutFlag.None => 'o',
                     LevelLayoutFlag.Player => 'P',
@@ -112,5 +98,4 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log(sb.ToString());
     }
-
 }

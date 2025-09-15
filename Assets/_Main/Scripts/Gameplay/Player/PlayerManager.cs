@@ -1,8 +1,8 @@
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 public class PlayerManager : MonoBehaviour
 {
-    #region References
     [Header("References")]
     public Rigidbody2D Body;
     public Animator Animator;
@@ -12,16 +12,15 @@ public class PlayerManager : MonoBehaviour
 
     [HideInInspector]
     public Transform SpriteTransform;
-    #endregion
 
     [Header("Data")]
     public PlayerData Data;
 
-    public PlayerController PlayerController { get; private set; }
-
     [Header("Parameters")]
     [SerializeField]
     public PlayerParameters Parameters;
+
+    public PlayerController PlayerController { get; private set; }
 
     private void Awake()
     {

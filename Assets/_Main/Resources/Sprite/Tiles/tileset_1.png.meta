@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 482eb3d5c19df454f86d8fc8195b89d3
+guid: 72abad8cf89e2e708b8db51916b8815e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7441063808967974531
-    second: Cliff_Tile_0
+      213: 814171740959066065
+    second: tileset_1_0
+  - first:
+      213: -1137903264212578849
+    second: tileset_1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -96,28 +99,15 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cliff_Tile_0
+      name: tileset_1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 80
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -128,212 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d71e273e3e70cb890800000000000000
-      internalID: -7441063808967974531
+      spriteID: 1d7c60e72e48c4b00800000000000000
+      internalID: 814171740959066065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15f96e0a5dc76d877be9865e4819ab07
-      internalID: -1880543081
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d49234e25c69cf2ab0d7fe8196456a2
-      internalID: -646380440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43be18a5ac7be4e39b4ca0e07ea5b5e0
-      internalID: 372079620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 358c6db5404dd601cb3fc184af4144c9
-      internalID: 1649457237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 173cd3176a4fe8f08b166a0a21259fc1
-      internalID: 1956128553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7bc30438db3c31bf682df286394709eb
-      internalID: -883947893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_7
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27247bc32706cd95da4377f4c75ee727
-      internalID: 1538207629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39d9c54fa9ca93e4ca92f18b69e6fcd3
-      internalID: 137118071
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bcdf6d22f8f1bea184f0afed3c8d59a
-      internalID: 442583583
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cliff_Tile_10
+      name: tileset_1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -346,16 +138,148 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bb7048af17603dbd6b5ef33384bb6467
-      internalID: 824118984
+      spriteID: fdd0ad3920b5530f0800000000000000
+      internalID: -1137903264212578849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_11
+      name: tileset_1_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed96b18737848288bafd4db8ff2cd44
+      internalID: -986105904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50bf0b17b377ba7dc8bc5e5076783e0a
+      internalID: -393140159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da82d7656ff93eadd849371fb3de71d4
+      internalID: 492601501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c9092fff1ba44378e92f9577ede7ba
+      internalID: -873944305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0548b7dd9431fdcb3b2a211700742cc2
+      internalID: 1642346046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf1a9d2d640b9967903c7d8fbc98b3b
+      internalID: -2103387427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_8
       rect:
         serializedVersion: 2
         x: 0
@@ -370,17 +294,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e3d52caf98a68fec84fe53249791806
-      internalID: 478981043
+      spriteID: b71912e4ebc482ff4852ab3982e0094e
+      internalID: -1427223331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_12
+      name: tileset_1_9
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 16
         width: 16
         height: 16
@@ -392,14 +316,102 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 392d9b2eb0c51a83783398ce5f428d08
-      internalID: 428728506
+      spriteID: a726c4c5a8f7d3704ba29fab3b303de4
+      internalID: -227699889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_13
+      name: tileset_1_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7e3b172370e9d9fb0334eef187b583
+      internalID: -336681693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f2d71a6ff9f1393839bfec76654d0b
+      internalID: 2114050239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2c998f52216179f8ae5658aa3f0179
+      internalID: -298605465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_13
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15d8a1a73c78068babc79c20f0ea0c3
+      internalID: -516304567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_14
       rect:
         serializedVersion: 2
         x: 0
@@ -414,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73359dca3a30aae9abc081b30a876aa7
-      internalID: 1442342506
+      spriteID: 15addebdfdce1ce1fb0bf9c8cfcc9f7e
+      internalID: 1317818589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_14
+      name: tileset_1_15
       rect:
         serializedVersion: 2
         x: 16
@@ -436,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82cd08c100379f2d9b8cf792ec6d5506
-      internalID: 91545555
+      spriteID: 00db372558405c34a8c5ca23fc8eb1b1
+      internalID: -913542912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cliff_Tile_15
+      name: tileset_1_16
       rect:
         serializedVersion: 2
         x: 32
@@ -458,8 +470,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0772e2a764a365365980fb4baeb529a7
-      internalID: 71881861
+      spriteID: 11dcf44d13a15cfbf8f4bdfeb2f924b2
+      internalID: -1326112516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718ffc18d8e6c461cbcfed32b648a5c1
+      internalID: -454390207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec701c0d683b7533aa2877608ce189e7
+      internalID: -1345592550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_19
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a99fb6a075caf827927022958050fc2
+      internalID: 627343444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_1_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03ea8d67ed437f88d9d54d91a925e07b
+      internalID: 1466237653
       vertices: []
       indices: 
       edges: []
@@ -468,7 +568,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9bf1ad17075c8acd7bafad94a2cb70e3
+    spriteID: 35e4155f169fc892e990c648ec8bc555
     internalID: 0
     vertices: []
     indices: 
@@ -478,22 +578,28 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cliff_Tile_0: -7441063808967974531
-      Cliff_Tile_1: -1880543081
-      Cliff_Tile_10: 824118984
-      Cliff_Tile_11: 478981043
-      Cliff_Tile_12: 428728506
-      Cliff_Tile_13: 1442342506
-      Cliff_Tile_14: 91545555
-      Cliff_Tile_15: 71881861
-      Cliff_Tile_2: -646380440
-      Cliff_Tile_3: 372079620
-      Cliff_Tile_4: 1649457237
-      Cliff_Tile_5: 1956128553
-      Cliff_Tile_6: -883947893
-      Cliff_Tile_7: 1538207629
-      Cliff_Tile_8: 137118071
-      Cliff_Tile_9: 442583583
+      tileset_1_0: 814171740959066065
+      tileset_1_1: -1137903264212578849
+      tileset_1_10: -336681693
+      tileset_1_11: 2114050239
+      tileset_1_12: -298605465
+      tileset_1_13: -516304567
+      tileset_1_14: 1317818589
+      tileset_1_15: -913542912
+      tileset_1_16: -1326112516
+      tileset_1_17: -454390207
+      tileset_1_18: -1345592550
+      tileset_1_19: 627343444
+      tileset_1_2: -986105904
+      tileset_1_20: 1466237653
+      tileset_1_23: 936117718
+      tileset_1_3: -393140159
+      tileset_1_4: 492601501
+      tileset_1_5: -873944305
+      tileset_1_6: 1642346046
+      tileset_1_7: -2103387427
+      tileset_1_8: -1427223331
+      tileset_1_9: -227699889
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
