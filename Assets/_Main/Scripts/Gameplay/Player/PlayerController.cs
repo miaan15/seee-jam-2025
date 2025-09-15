@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private PlayerData data;
     public GameInput input;
 
+    private Vector2Int desiredMoveToPos;
+
     private void Awake()
     {
         manager = GetComponent<PlayerManager>();
@@ -17,31 +19,37 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        MoveTo(GameManager.Instance.LevelManager.PlayerStartPos);
+        desiredMoveToPos = GameManager.Instance.LevelManager.PlayerStartPos;
+        MoveToDesiredPos();
+
+        GameManager.Instance.AddOnBeatCallback(MoveToDesiredPos);
     }
 
     private void Update()
     {
         parameters.MoveDirectionInput = input.Player.Move.ReadValue<Vector2>();
-        parameters.MoveDirection = Vector2Int.zero;
+        parameters.DesiredMoveDirection = Vector2Int.zero;
         if (Mathf.Abs(parameters.MoveDirectionInput.x) > 0)
         {
-            parameters.MoveDirection.x = (int)Mathf.Sign(parameters.MoveDirectionInput.x);
+            parameters.DesiredMoveDirection.x = (int)Mathf.Sign(parameters.MoveDirectionInput.x);
         }
         else if (Mathf.Abs(parameters.MoveDirectionInput.y) > 0)
         {
-            parameters.MoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            MoveTo(parameters.GridPosition + parameters.MoveDirection);
+            parameters.DesiredMoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
         }
     }
 
-    private void MoveTo(Vector2Int pos)
+    private void FixedUpdate()
     {
-        transform.position = GameManager.Instance.LayoutPosToPosition(pos);
-        parameters.GridPosition = pos;
+        if (GameManager.Instance.AcceptInput && parameters.DesiredMoveDirection != Vector2Int.zero)
+        {
+            desiredMoveToPos = parameters.GridPosition + parameters.DesiredMoveDirection;
+        }
+    }
+
+    private void MoveToDesiredPos()
+    {
+        transform.position = GameManager.Instance.LayoutPosToPosition(desiredMoveToPos);
+        parameters.GridPosition = desiredMoveToPos;
     }
 }

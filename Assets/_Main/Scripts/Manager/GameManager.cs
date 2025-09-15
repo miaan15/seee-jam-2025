@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public LevelManager LevelManager;
 
+    public BeatManager BeatManager;
+
     public LevelLayout LevelLayout => LevelManager.Layout;
     public Vector2 LayoutPosToPosition(Vector2Int pos)
     {
@@ -30,6 +33,17 @@ public class GameManager : MonoBehaviour
         return new Vector2(pos.x * cellSize.x, pos.y * cellSize.y) + cellSize * 0.5f;
     }
 
+    public bool AcceptInput => BeatManager.AcceptInput;
+    public void AddOnBeatCallback(Action callback)
+    {
+        BeatManager.AddOnBeatCallback(callback);
+    }
+
     [Space(10)]
     public PlayerManager Player;
+
+    private void Start()
+    {
+        BeatManager.Play();
+    }
 }
