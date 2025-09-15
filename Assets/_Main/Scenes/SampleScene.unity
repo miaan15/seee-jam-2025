@@ -180,7 +180,7 @@ MonoBehaviour:
   Grid: {fileID: 478130859}
   Width: 12
   Height: 12
-  PlayerStartPos: {x: 0, y: 0}
+  PlayerStartPos: {x: 5, y: 4}
 --- !u!1 &478130858
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35083f72e69bb317eaf4de85bef62ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interval: 0.8
+  Interval: 0.5
   EarlyAcceptInputOffset: 0.2
   LateAcceptInputOffset: 0
   AcceptInput: 0
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 1184422057}
   - component: {fileID: 1184422060}
   - component: {fileID: 1184422061}
-  - component: {fileID: 1184422062}
+  - component: {fileID: 1184422064}
   - component: {fileID: 1184422059}
   - component: {fileID: 1184422058}
   - component: {fileID: 1184422063}
@@ -747,18 +747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38533a32ce5c56c46bb7ec4fb8f07942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1184422062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1184422056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aacfe1a2d3527f640ba4ae7fc1723771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1184422063
 Animator:
   serializedVersion: 7
@@ -781,6 +769,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1184422064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184422056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427b9077323f620e3b7f1b8a83fbdf69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Length: 8
+  BombBeat: 0000000000000000
+  DetoBeat: 0000000000000000
+  InvulBeat: 0000000000000000
+  CurrentBeat: 0
 --- !u!1 &1211477835
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,9 +861,9 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0, z: 0}
+  Damping: {x: 0.5, y: 0.5, z: 0}
   Lookahead:
-    Enabled: 1
+    Enabled: 0
     Time: 0.4
     Smoothing: 6
     IgnoreY: 0

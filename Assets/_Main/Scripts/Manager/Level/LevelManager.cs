@@ -57,6 +57,8 @@ public class LevelManager : MonoBehaviour
         BoundsInt bounds = wallInstance.cellBounds;
         Vector3Int origin = bounds.min;
 
+        wallInstance.transform.position = new Vector3(Grid.cellSize.x * -bounds.min.x, Grid.cellSize.y * -bounds.min.y);
+
         int maxX = Mathf.Min(Width, bounds.size.x);
         int maxY = Mathf.Min(Height, bounds.size.y);
 

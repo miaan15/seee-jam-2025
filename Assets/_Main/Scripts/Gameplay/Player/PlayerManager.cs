@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerBeats))]
 public class PlayerManager : MonoBehaviour
 {
     [Header("References")]
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerParameters Parameters;
 
     public PlayerController PlayerController { get; private set; }
+    public PlayerBeats PlayerBeats { get; private set; }
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class PlayerManager : MonoBehaviour
         Parameters = new PlayerParameters();
 
         PlayerController = GetComponent<PlayerController>();
+        PlayerBeats = GetComponent<PlayerBeats>();
 
         SpriteTransform = transform.GetChild(0);
     }
