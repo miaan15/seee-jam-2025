@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25ea1343021f5eb5a595d7d142c30c1, type: 3}
+  m_Name: MapContext
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 71881861, guid: 482eb3d5c19df454f86d8fc8195b89d3, type: 3}
