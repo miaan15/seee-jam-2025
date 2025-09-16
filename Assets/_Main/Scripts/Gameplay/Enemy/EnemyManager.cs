@@ -30,17 +30,17 @@ public abstract class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        desiredMoveToPos = Parameters.GridPosition;
         GameManager.Instance.AddOnBeatCallback(MoveToDesiredPos);
         GameManager.Instance.AddOnBeatCallback(OnBeat);
 
         OnStart();
+        
+        desiredMoveToPos = Parameters.GridPosition;
     }
 
     private void MoveToDesiredPos()
     {
         transform.position = GameManager.Instance.LayoutPosToPosition(desiredMoveToPos);
-        Parameters.GridPosition = desiredMoveToPos;
     }
 
     protected abstract void OnAwake();
