@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(PlayerBeats))]
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerManager : MonoBehaviour
 {
     [Header("References")]
@@ -23,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerController PlayerController { get; private set; }
     public PlayerBeats PlayerBeats { get; private set; }
+    public PlayerStats PlayerStats { get; private set; }
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class PlayerManager : MonoBehaviour
 
         PlayerController = GetComponent<PlayerController>();
         PlayerBeats = GetComponent<PlayerBeats>();
+        PlayerStats = GetComponent<PlayerStats>();
 
         SpriteTransform = transform.GetChild(0);
     }

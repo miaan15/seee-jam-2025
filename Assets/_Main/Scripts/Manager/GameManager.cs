@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
     }
 
     public LevelManager LevelManager;
-
     public BeatManager BeatManager;
+    public DamageManager DamageManager;
 
     public LevelLayout LevelLayout => LevelManager.Layout;
     public Vector2 LayoutPosToPosition(Vector2Int pos)
@@ -34,10 +34,9 @@ public class GameManager : MonoBehaviour
     }
 
     public bool AcceptInput => BeatManager.AcceptInput;
-    public void AddOnBeatCallback(Action callback)
-    {
-        BeatManager.AddOnBeatCallback(callback);
-    }
+    public void AddOnBeatCallback(Action callback) => BeatManager.AddOnBeatCallback(callback);
+
+    public void DealDamage(Vector2Int pos, int amount, DamageType type) => DamageManager.DealDamage(pos, amount, type);
 
     [Space(10)]
     public PlayerManager Player;

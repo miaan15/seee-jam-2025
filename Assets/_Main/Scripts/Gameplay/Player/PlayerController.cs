@@ -37,6 +37,11 @@ public class PlayerController : MonoBehaviour
         {
             parameters.DesiredMoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameManager.Instance.DealDamage(parameters.GridPosition + new Vector2Int(1, 0), 1, DamageType.Everything);
+        }
     }
 
     private void FixedUpdate()
