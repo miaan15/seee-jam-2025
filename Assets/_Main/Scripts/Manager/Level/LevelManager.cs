@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
     private Tilemap wallInstance;
 
-    private void Start()
+    private void Awake()
     {
         layout = new(Width, Height);
         Load();

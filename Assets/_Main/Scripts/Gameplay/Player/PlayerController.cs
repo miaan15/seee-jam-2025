@@ -38,10 +38,15 @@ public class PlayerController : MonoBehaviour
             parameters.DesiredMoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            GameManager.Instance.DealDamage(parameters.GridPosition + new Vector2Int(1, 0), 1, DamageType.Everything);
+            GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, 4);
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameManager.Instance.BombManager.Detonate();
+        }
+
     }
 
     private void FixedUpdate()

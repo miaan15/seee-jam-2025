@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(LevelManager))]
 [RequireComponent(typeof(BeatManager))]
 [RequireComponent(typeof(DamageManager))]
+[RequireComponent(typeof(BombManager))]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public BeatManager BeatManager { get; private set; }
     public DamageManager DamageManager { get; private set; }
     public PathFindingManager PathFinding { get; private set; }
+    public BombManager BombManager { get; private set; }
 
     public PlayerManager Player { get; private set; }
 
@@ -58,12 +60,15 @@ public class GameManager : MonoBehaviour
     public Vector2Int[] GetPathToMove(Vector2Int from, Vector2Int to, bool ignoreEntity = true)
         => PathFinding.GetPathToMove(from, to, ignoreEntity);
 
+    public GameObject TestSprite;
+
     private void Awake()
     {
         LevelManager = GetComponent<LevelManager>();
         BeatManager = GetComponent<BeatManager>();
         DamageManager = GetComponent<DamageManager>();
         PathFinding = GetComponent<PathFindingManager>();
+        BombManager = GetComponent<BombManager>();
 
         Player = FindFirstObjectByType<PlayerManager>();
     }
