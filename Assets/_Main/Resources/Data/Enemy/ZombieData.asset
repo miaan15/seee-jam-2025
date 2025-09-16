@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8be6075c8b68d1ea8348dea4135529, type: 3}
-  m_Name: EnemyData
+  m_Script: {fileID: 11500000, guid: 89eef19dd66a41e4c8167fd8ca885323, type: 3}
+  m_Name: ZombieData
   m_EditorClassIdentifier: 
   Health: 3
-  Speed: 0
+  Speed: 2

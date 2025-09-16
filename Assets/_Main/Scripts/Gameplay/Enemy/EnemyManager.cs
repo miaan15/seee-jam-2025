@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyStats))]
-public class EnemyManager : MonoBehaviour
+public abstract class EnemyManager : MonoBehaviour
 {
     [Header("References")]
     public Animator Animator;
@@ -9,43 +9,42 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector]
     public Transform SpriteTransform;
 
-    [Header("Data")]
-    public EnemyData Data;
-
     [Header("Parameters")]
     [SerializeField]
     public EnemyParameters Parameters;
 
-    public EnemyStats EnemyStats { get; private set; }
+    public EnemyStats Stats { get; private set; }
+
+    protected Vector2Int desiredMoveToPos;
 
     private void Awake()
     {
         Parameters = new EnemyParameters();
 
-        EnemyStats = GetComponent<EnemyStats>();
+        Stats = GetComponent<EnemyStats>();
 
         SpriteTransform = transform.GetChild(0);
+
+        OnAwake();
     }
 
-    Vector2Int[] path;
-    int pp;
     private void Start()
     {
-        Parameters.GridPosition = GameManager.Instance.PositionToLayoutPos(transform.position);
+        desiredMoveToPos = Parameters.GridPosition;
+        GameManager.Instance.AddOnBeatCallback(MoveToDesiredPos);
+        GameManager.Instance.AddOnBeatCallback(OnBeat);
 
-        path = GameManager.Instance.PathFinding.GetPathToMove(Parameters.GridPosition, GameManager.Instance.LevelManager.PlayerStartPos);
-        pp = 0;
-
-        GameManager.Instance.AddOnBeatCallback(Movee);
+        OnStart();
     }
-    private void Movee()
+
+    private void MoveToDesiredPos()
     {
-        if (pp >= path.Length) return;
-
-        var desiredMoveToPos = Parameters.GridPosition + path[pp];
-        pp++;
-
         transform.position = GameManager.Instance.LayoutPosToPosition(desiredMoveToPos);
         Parameters.GridPosition = desiredMoveToPos;
     }
+
+    protected abstract void OnAwake();
+    protected abstract void OnStart();
+
+    protected abstract void OnBeat();
 }
