@@ -39,4 +39,8 @@ public class PlayerManager : MonoBehaviour
 
         SpriteTransform = transform.GetChild(0);
     }
+
+    private void Start()
+    {
+    }
 }

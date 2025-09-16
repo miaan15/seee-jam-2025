@@ -9,11 +9,8 @@ public enum LevelLayoutFlag
     Wall,
 }
 
-[RequireComponent(typeof(WallManager))]
 public class LevelManager : MonoBehaviour
 {
-    private WallManager wallManager;
-
     [Header("References")]
     public Grid Grid;
 
@@ -22,17 +19,15 @@ public class LevelManager : MonoBehaviour
     public int Height;
 
     [Space(10)]
+    public Tilemap WallMap;
+
+    [Space(10)]
     public Vector2Int PlayerStartPos;
 
     private LevelLayout layout;
     public LevelLayout Layout => layout;
 
     private Tilemap wallInstance;
-
-    private void Awake()
-    {
-        wallManager = GetComponent<WallManager>();
-    }
 
     private void Start()
     {
@@ -51,7 +46,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleMakeWall()
     {
-        wallInstance = Instantiate(wallManager.Layout, Grid.transform);
+        wallInstance = Instantiate(WallMap, Grid.transform);
 
         wallInstance.CompressBounds();
         BoundsInt bounds = wallInstance.cellBounds;
