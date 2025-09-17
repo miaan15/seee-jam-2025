@@ -15,8 +15,11 @@ public class BeatManager : MonoBehaviour
     private TimeStamp denyInputTimeStamp = new();
 
     public List<Action> OnBeatCallbacks = new();
+    public List<Action> OnPrePlayedBeatCallbacks = new();
 
-    public void Play()
+    private bool played = false;
+
+    private void Start()
     {
         nextBeatTimeStamp.Set(Interval);
 
@@ -24,9 +27,19 @@ public class BeatManager : MonoBehaviour
         denyInputTimeStamp.Set(Interval + LateAcceptInputOffset);
     }
 
+    public void Play()
+    {
+        played = true;
+    }
+
     public void AddOnBeatCallback(Action callback)
     {
         OnBeatCallbacks.Add(callback);
+    }
+
+    public void AddOnPrePlayedBeatCallback(Action callback)
+    {
+        OnPrePlayedBeatCallbacks.Add(callback);
     }
 
     private void FixedUpdate()
@@ -48,12 +61,28 @@ public class BeatManager : MonoBehaviour
         {
             nextBeatTimeStamp.Set(Interval);
 
-            for (int i = OnBeatCallbacks.Count - 1; i >= 0; i--)
+            if (played)
             {
-                var cb = OnBeatCallbacks[i];
+                for (int i = OnBeatCallbacks.Count - 1; i >= 0; i--)
+                {
+                    var cb = OnBeatCallbacks[i];
+                    if (cb == null)
+                    {
+                        OnBeatCallbacks.RemoveAt(i);
+                    }
+                    else
+                    {
+                        cb.Invoke();
+                    }
+                }
+            }
+
+            for (int i = OnPrePlayedBeatCallbacks.Count - 1; i >= 0; i--)
+            {
+                var cb = OnPrePlayedBeatCallbacks[i];
                 if (cb == null)
                 {
-                    OnBeatCallbacks.RemoveAt(i);
+                    OnPrePlayedBeatCallbacks.RemoveAt(i);
                 }
                 else
                 {

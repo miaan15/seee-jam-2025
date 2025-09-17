@@ -72,9 +72,4 @@ public class GameManager : MonoBehaviour
 
         Player = FindFirstObjectByType<PlayerManager>();
     }
-
-    private void Start()
-    {
-        BeatManager.Play();
-    }
 }

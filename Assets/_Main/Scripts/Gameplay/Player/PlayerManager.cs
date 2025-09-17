@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [Header("References")]
-    public Rigidbody2D Body;
     public Animator Animator;
 
     [HideInInspector]
