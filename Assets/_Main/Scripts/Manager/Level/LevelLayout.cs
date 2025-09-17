@@ -30,21 +30,25 @@ public class LevelLayout
     private List<LevelLayoutFlag> flags = new();
     public LevelLayoutFlag GetFlag(int x, int y)
     {
+        if (x < 0 || y < 0) return LevelLayoutFlag.Wall;
         if (x >= Width || y >= Height) return LevelLayoutFlag.Wall;
         return flags[y * Width + x];
     }
     public LevelLayoutFlag GetFlag(Vector2Int pos)
     {
+        if (pos.x < 0 || pos.y < 0) return LevelLayoutFlag.Wall;
         if (pos.x >= Width || pos.y >= Height) return LevelLayoutFlag.Wall;
         return flags[pos.y * Width + pos.x];
     }
     public void SetFlag(int x, int y, LevelLayoutFlag flag)
     {
+        if (x < 0 || y < 0) return;
         if (x >= Width || y >= Height) return;
         flags[y * Width + x] = flag;
     }
     public void SetFlag(Vector2Int pos, LevelLayoutFlag flag)
     {
+        if (pos.x < 0 || pos.y < 0) return;
         if (pos.x >= Width || pos.y >= Height) return;
         flags[pos.y * Width + pos.x] = flag;
     }

@@ -9,12 +9,23 @@ public class PlayerController : MonoBehaviour
 
     private Vector2Int desiredMoveToPos;
 
+    public int Length = 8;
+
+    public bool[] BombBeat;
+    public bool[] DetoBeat;
+
+    public int CurrentBeat = 0;
+
+
     private void Awake()
     {
         manager = GetComponent<PlayerManager>();
         parameters = manager.Parameters;
         data = manager.Data;
         input = manager.Input;
+
+        BombBeat = new bool[Length];
+        DetoBeat = new bool[Length];
     }
 
     private void Start()
@@ -22,7 +33,7 @@ public class PlayerController : MonoBehaviour
         desiredMoveToPos = GameManager.Instance.LevelManager.PlayerStartPos;
         MoveToDesiredPos();
 
-        GameManager.Instance.AddOnBeatCallback(MoveToDesiredPos);
+        GameManager.Instance.AddOnBeatCallback(OnBeat);
     }
 
     private void Update()
@@ -37,16 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             parameters.DesiredMoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
         }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, 4);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            GameManager.Instance.BombManager.Detonate();
-        }
-
     }
 
     private void FixedUpdate()
@@ -62,6 +63,23 @@ public class PlayerController : MonoBehaviour
                 desiredMoveToPos = parameters.GridPosition;
             }
         }
+    }
+
+    private void OnBeat()
+    {
+        if (BombBeat[CurrentBeat])
+        {
+            GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, 0);
+        }
+        if (DetoBeat[CurrentBeat])
+        {
+            GameManager.Instance.BombManager.Detonate();
+        }
+
+        ++CurrentBeat;
+        if (CurrentBeat >= Length) CurrentBeat = 0;
+
+        MoveToDesiredPos();
     }
 
     private void MoveToDesiredPos()

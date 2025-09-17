@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
@@ -6,6 +7,20 @@ public class Bomb : MonoBehaviour
     public int Damage;
 
     public Vector2Int GridPosition;
+
+    private bool lockUpPower = true;
+
+    private void Start()
+    {
+        StartCoroutine(UnlockUpPowerCoroutine());
+        GameManager.Instance.AddOnBeatCallback(() => { if (!lockUpPower) Power++; });
+    }
+
+    private IEnumerator UnlockUpPowerCoroutine()
+    {
+        yield return new WaitForFixedUpdate();
+        lockUpPower = false;
+    }
 
     public void Explode()
     {

@@ -9,8 +9,14 @@ public class BombManager : MonoBehaviour
 
     private List<Bomb> allBombs = new();
 
-    public void SpawnBomb(Vector2Int pos, int power, int damage = 1)
+    public void SpawnBomb(Vector2Int pos, int power = 1, int damage = 1)
     {
+        foreach (var b in allBombs)
+        {
+            if (b.GridPosition == pos)
+                return;
+        }
+
         if (bombSpawner == null)
         {
             bombSpawner = new GameObject("BombSpawner").transform;
