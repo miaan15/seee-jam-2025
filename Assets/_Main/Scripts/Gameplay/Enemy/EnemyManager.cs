@@ -34,7 +34,7 @@ public abstract class EnemyManager : MonoBehaviour
         GameManager.Instance.AddOnBeatCallback(OnBeat);
 
         OnStart();
-        
+
         desiredMoveToPos = Parameters.GridPosition;
     }
 

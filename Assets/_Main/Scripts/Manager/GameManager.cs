@@ -57,9 +57,6 @@ public class GameManager : MonoBehaviour
 
     public void DealDamage(Vector2Int pos, int amount, DamageType type) => DamageManager.DealDamage(pos, amount, type);
 
-    public Vector2Int[] GetPathToMove(Vector2Int from, Vector2Int to, bool ignoreEntity = true)
-        => PathFinding.GetPathToMove(from, to, ignoreEntity);
-
     public GameObject TestSprite;
 
     private void Awake()

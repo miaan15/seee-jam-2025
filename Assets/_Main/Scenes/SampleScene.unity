@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prototype: {fileID: 8889953853092117525, guid: be9d61acc650251b0a88c5f789a8042a, type: 3}
+  started: 0
 --- !u!1 &478130858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,10 +1327,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Grid: {fileID: 478130859}
-  Width: 12
-  Height: 12
+  Width: 100
+  Height: 100
   WallMap: {fileID: 3750194292726622487, guid: 97e21b5fefec0ba66ba1b7482ce3b9f3, type: 3}
-  PlayerStartPos: {x: 6, y: 6}
+  PlayerStartPos: {x: 10, y: 10}
 --- !u!114 &1419168701
 MonoBehaviour:
   m_ObjectHideFlags: 0
