@@ -7,6 +7,7 @@ public enum LevelLayoutFlag
     Player,
     Enemy,
     Wall,
+    Breakable
 }
 
 public class LevelManager : MonoBehaviour
@@ -18,8 +19,7 @@ public class LevelManager : MonoBehaviour
     public int Width;
     public int Height;
 
-    [Space(10)]
-    public Tilemap WallMap;
+    public LevelData LevelData;
 
     [Space(10)]
     public Vector2Int PlayerStartPos;
@@ -27,72 +27,49 @@ public class LevelManager : MonoBehaviour
     private LevelLayout layout;
     public LevelLayout Layout => layout;
 
-    private Tilemap wallInstance;
-
     private void Awake()
     {
-        layout = new(Width, Height);
-        Load();
+        layout = LevelData.GetLayout();
     }
 
-    public void Load()
+    private void Start()
     {
-        layout.Reset(Width, Height);
-
-        HandleMakeWall();
-
-        DebugLogFlags();
+        LoadLevel();
     }
 
-    private void HandleMakeWall()
+    private void LoadLevel()
     {
-        wallInstance = Instantiate(WallMap, Grid.transform);
+        var levelObj = Instantiate(LevelData, Grid.transform).GetComponent<LevelData>();
 
-        wallInstance.CompressBounds();
-        BoundsInt bounds = wallInstance.cellBounds;
-        Vector3Int origin = bounds.min;
+        levelObj.wallMap.gameObject.SetActive(false);
+        levelObj.breakableMap.gameObject.SetActive(false);
+        levelObj.enemyMap.gameObject.SetActive(false);
 
-        wallInstance.transform.position = new Vector3(Grid.cellSize.x * -bounds.min.x, Grid.cellSize.y * -bounds.min.y);
+        var tilemap = new GameObject("Tilemap", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
+        tilemap.transform.SetParent(Grid.transform);
 
-        int maxX = Mathf.Min(Width, bounds.size.x);
-        int maxY = Mathf.Min(Height, bounds.size.y);
-
-        for (int y = 0; y < maxY; y++)
+        for (int y = -LevelData.WallBoundThickness; y < Layout.Height + LevelData.WallBoundThickness; y++)
         {
-            for (int x = 0; x < maxX; x++)
+            for (int x = -LevelData.WallBoundThickness; x < Layout.Width + LevelData.WallBoundThickness; x++)
             {
-                var cellPos = new Vector3Int(origin.x + x, origin.y + y, 0);
-
-                if (wallInstance.HasTile(cellPos))
+                if (y < 0 || y >= Layout.Height || x < 0 || x >= Layout.Width || Layout.GetFlag(x, y) == LevelLayoutFlag.Wall)
                 {
-                    layout.SetFlag(x, y, LevelLayoutFlag.Wall);
+                    Vector3Int pos = new(x, y, 0);
+                    tilemap.SetTile(pos, LevelData.wallTile);
                 }
             }
         }
-    }
 
-    private void DebugLogFlags()
-    {
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-        for (int y = Height - 1; y >= 0; y--)
+        for (int y = 0; y < Layout.Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < Layout.Width; x++)
             {
-                char c = layout.GetFlag(x, y) switch
+                if (Layout.GetFlag(x, y) == LevelLayoutFlag.Breakable)
                 {
-                    LevelLayoutFlag.None => 'o',
-                    LevelLayoutFlag.Player => 'P',
-                    LevelLayoutFlag.Enemy => 'E',
-                    LevelLayoutFlag.Wall => 'X',
-                    _ => '?'
-                };
-                sb.Append(c);
-                sb.Append(' ');
+                    var obj = Instantiate(LevelData.breakableObject, tilemap.transform);
+                    obj.transform.position = GameManager.Instance.LayoutPosToPosition(new Vector2Int(x, y));
+                }
             }
-            sb.AppendLine();
         }
-
-        Debug.Log(sb.ToString());
     }
 }

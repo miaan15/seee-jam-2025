@@ -48,7 +48,7 @@ public class PathFindingManager : MonoBehaviour
                     Vector2Int next = cur + new Vector2Int(dx[i], dy[i]);
                     if (next.x < 0 || next.x >= layout.Width || next.y < 0 || next.y >= layout.Height) continue;
                     if (visited.Contains(next)) continue;
-                    if (layout.GetFlag(next) == LevelLayoutFlag.Wall) continue;
+                    if (layout.GetFlag(next) == LevelLayoutFlag.Wall || layout.GetFlag(next) == LevelLayoutFlag.Breakable) continue;
 
                     var newPolicy = new Vector2Int(-dx[i], -dy[i]);
                     if (moveToPlayerPolicy[next.y * layout.Width + next.x] != newPolicy)
@@ -95,7 +95,7 @@ public class PathFindingManager : MonoBehaviour
                     Vector2Int next = cur + new Vector2Int(dx[i], dy[i]);
                     if (next.x < 0 || next.x >= layout.Width || next.y < 0 || next.y >= layout.Height) continue;
                     if (visited.Contains(next)) continue;
-                    if (layout.GetFlag(next) == LevelLayoutFlag.Wall) continue;
+                    if (layout.GetFlag(next) == LevelLayoutFlag.Wall || layout.GetFlag(next) == LevelLayoutFlag.Breakable) continue;
 
                     var newPolicy = new Vector2Int(-dx[i], -dy[i]);
                     if (moveToPlayerPolicy[next.y * layout.Width + next.x] != newPolicy)
