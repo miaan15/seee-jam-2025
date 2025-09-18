@@ -4,8 +4,6 @@ using UnityEngine.Tilemaps;
 public enum LevelLayoutFlag
 {
     None = 0,
-    Player,
-    Enemy,
     Wall,
     Breakable
 }
@@ -56,18 +54,20 @@ public class LevelManager : MonoBehaviour
                 {
                     Vector3Int pos = new(x, y, 0);
                     tilemap.SetTile(pos, LevelData.wallTile);
+                    continue;
                 }
-            }
-        }
 
-        for (int y = 0; y < Layout.Height; y++)
-        {
-            for (int x = 0; x < Layout.Width; x++)
-            {
                 if (Layout.GetFlag(x, y) == LevelLayoutFlag.Breakable)
                 {
-                    var obj = Instantiate(LevelData.breakableObject, tilemap.transform);
+                    var obj = Instantiate(LevelData.breakableObject, tilemap.transform).GetComponent<Breakable>();
                     obj.transform.position = GameManager.Instance.LayoutPosToPosition(new Vector2Int(x, y));
+                    obj.GridPosition = new Vector2Int(x, y);
+                }
+
+                if (levelObj.enemyIDs[y * Layout.Width + x] != -1)
+                {
+                    int id = levelObj.enemyIDs[y * Layout.Width + x];
+                    GameManager.Instance.EnemyWaveManager.SpawnEnemy(new Vector2Int(x, y), id);
                 }
             }
         }

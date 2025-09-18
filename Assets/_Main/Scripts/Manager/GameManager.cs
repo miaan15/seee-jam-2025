@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(BeatManager))]
 [RequireComponent(typeof(DamageManager))]
 [RequireComponent(typeof(BombManager))]
+[RequireComponent(typeof(PathFindingManager))]
+[RequireComponent(typeof(EnemyWaveManager))]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     public DamageManager DamageManager { get; private set; }
     public PathFindingManager PathFinding { get; private set; }
     public BombManager BombManager { get; private set; }
+    public EnemyWaveManager EnemyWaveManager { get; private set; }
 
     public PlayerManager Player { get; private set; }
 
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
         DamageManager = GetComponent<DamageManager>();
         PathFinding = GetComponent<PathFindingManager>();
         BombManager = GetComponent<BombManager>();
+        EnemyWaveManager = GetComponent<EnemyWaveManager>();
 
         Player = FindFirstObjectByType<PlayerManager>();
     }

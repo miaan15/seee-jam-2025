@@ -1,4 +1,5 @@
-using NUnit.Framework;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,6 +18,7 @@ public class LevelData : MonoBehaviour
 
     [HideInInspector]
     public LevelLayout Layout = null;
+    public List<int> enemyIDs;
 
     public LevelLayout GetLayout()
     {
@@ -34,7 +36,12 @@ public class LevelData : MonoBehaviour
             Vector3Int.Max(maxBound.max, Vector3Int.Max(breakableMapBound.max, enemyMapBound.max))
         );
 
-        Layout = new(maxBound.max.x + ExtraSpace.x, maxBound.max.y + ExtraSpace.y);
+        int w = maxBound.max.x + ExtraSpace.x;
+        int h = maxBound.max.y + ExtraSpace.y;
+        Layout = new(w, h);
+        enemyIDs = new(w * h);
+        enemyIDs.AddRange(Enumerable.Repeat(-1, w * h));
+        enemyIDs.TrimExcess();
 
         for (int y = 0; y < maxBound.max.y; y++)
         {
@@ -49,9 +56,18 @@ public class LevelData : MonoBehaviour
                 {
                     Layout.SetFlag(x, y, LevelLayoutFlag.Breakable);
                 }
-                else if (enemyMap.HasTile(pos))
+
+                if (enemyMap.HasTile(pos))
                 {
-                    Layout.SetFlag(x, y, LevelLayoutFlag.Enemy);
+                    var enemyTiles = GameManager.Instance.EnemyWaveManager.EnemySpawnTiles;
+                    var tileBase = enemyMap.GetTile(pos);
+                    var enemyTilesList = enemyTiles.ToList();
+                    Tile tile = tileBase as Tile;
+                    if (tile != null && enemyTilesList.Contains(tile))
+                    {
+                        int id = enemyTilesList.IndexOf(tile);
+                        enemyIDs[y * w + x] = id;
+                    }
                 }
             }
         }
