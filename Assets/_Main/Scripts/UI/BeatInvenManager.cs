@@ -15,12 +15,10 @@ public class BeatInvenManager : MonoBehaviour
 
     private void ClickBombInven(int index)
     {
-        Debug.Log($"Bomb inventory clicked: {index}");
     }
 
     private void ClickDetoInven(int index)
     {
-        Debug.Log($"Deto inventory clicked: {index}");
     }
 
     private void Start()
