@@ -15,10 +15,44 @@ public class BeatInvenManager : MonoBehaviour
 
     private void ClickBombInven(int index)
     {
+        GameManager.Instance.Player.PlayerController.BombBeat[index] = true;
+
+        GameObject go = new GameObject($"idk", typeof(RectTransform), typeof(Image));
+        go.transform.SetParent(this.transform, worldPositionStays: false);
+
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.sizeDelta = Size;
+        rt.anchorMin = new Vector2(0.5f, 0.5f);
+        rt.anchorMax = new Vector2(0.5f, 0.5f);
+        rt.pivot = new Vector2(0.5f, 0.5f);
+
+        RectTransform origin = BombInvenTransform;
+        Vector3 originWorld = origin.TransformPoint(origin.rect.center);
+        Vector3 originLocal = transform.InverseTransformPoint(originWorld);
+        Vector2 pos = (Vector2)originLocal + new Vector2(index * Space, 0f);
+        rt.anchoredPosition = pos;
+
     }
 
     private void ClickDetoInven(int index)
     {
+        GameManager.Instance.Player.PlayerController.DetoBeat[index] = true;
+
+        GameObject go = new GameObject($"idk", typeof(RectTransform), typeof(Image));
+        go.transform.SetParent(this.transform, worldPositionStays: false);
+
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.sizeDelta = Size;
+        rt.anchorMin = new Vector2(0.5f, 0.5f);
+        rt.anchorMax = new Vector2(0.5f, 0.5f);
+        rt.pivot = new Vector2(0.5f, 0.5f);
+
+        RectTransform origin = DetoInvenTransform;
+        Vector3 originWorld = origin.TransformPoint(origin.rect.center);
+        Vector3 originLocal = transform.InverseTransformPoint(originWorld);
+        Vector2 pos = (Vector2)originLocal + new Vector2(index * Space, 0f);
+        rt.anchoredPosition = pos;
+
     }
 
     private void Start()

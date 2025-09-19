@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("References")]
     public Grid Grid;
+    public Camera MainCamera;
 
     [Header("Data")]
     public int Width;
@@ -71,5 +72,11 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+
+        MainCamera.transform.position = new Vector3(
+            (Layout.Width * Grid.cellSize.x) / 2f,
+            (Layout.Height * Grid.cellSize.y) / 2f,
+            MainCamera.transform.position.z
+        );
     }
 }
