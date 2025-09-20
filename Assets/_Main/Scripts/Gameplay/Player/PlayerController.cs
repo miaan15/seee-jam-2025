@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
         BombBeat = new bool[Length];
         DetoBeat = new bool[Length];
+        DetoBeat[7] = true;
     }
 
     private void Start()

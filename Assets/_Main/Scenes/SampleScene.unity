@@ -373,7 +373,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -246}
-  m_SizeDelta: {x: 580, y: 40}
+  m_SizeDelta: {x: 470, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &423755484
 CanvasRenderer:
@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30.5, y: -32.980427}
+  m_AnchoredPosition: {x: 100.8, y: -200}
   m_SizeDelta: {x: 61.75, y: 61.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &428321018
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BombInvenTransform: {fileID: 591839965}
   DetoInvenTransform: {fileID: 428321017}
-  Num: 8
+  Num: 7
   Space: 65.48044
   Size: {x: 61.75, y: 61.75}
 --- !u!1 &2015067676
