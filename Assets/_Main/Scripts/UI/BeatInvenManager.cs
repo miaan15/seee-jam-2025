@@ -5,6 +5,7 @@ public class BeatInvenManager : MonoBehaviour
 {
     public RectTransform BombInvenTransform;
     public RectTransform DetoInvenTransform;
+    public RectTransform CurBeatTransform;
 
     public int Num;
     public float Space;
@@ -53,6 +54,13 @@ public class BeatInvenManager : MonoBehaviour
         // Vector2 pos = (Vector2)originLocal + new Vector2(index * Space, 0f);
         // rt.anchoredPosition = pos;
 
+    }
+
+    private void Update()
+    {
+        int cur = GameManager.Instance.Player.PlayerController.CurrentBeat - 1;
+        if (cur < 0) cur = GameManager.Instance.Player.PlayerController.Length - 1;
+        CurBeatTransform.anchoredPosition = new Vector2(31 + cur * Space, CurBeatTransform.anchoredPosition.y);
     }
 
     private void Start()

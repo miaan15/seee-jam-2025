@@ -21,8 +21,8 @@ MonoBehaviour:
     RandomPitch: 0
   - Name: snare
     Clip: {fileID: 8300000, guid: b25064108848f9e449e6cb903f90f902, type: 3}
-    Volume: 0
-    Pitch: 1
+    Volume: 0.8
+    Pitch: 0.9
     RandomVolume: 0
     RandomPitch: 0
   - Name: kick

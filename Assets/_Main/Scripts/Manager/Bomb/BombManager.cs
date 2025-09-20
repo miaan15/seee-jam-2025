@@ -7,7 +7,7 @@ public class BombManager : MonoBehaviour
 
     private Transform bombSpawner;
 
-    private List<Bomb> allBombs = new();
+    public List<Bomb> allBombs = new();
 
     public void SpawnBomb(Vector2Int pos, int power = 1, int damage = 1)
     {

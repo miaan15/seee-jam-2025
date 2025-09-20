@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour
         if (DetoBeat[CurrentBeat])
         {
             GameManager.Instance.BombManager.Detonate();
-            GameManager.Instance.SoundManager.PlaySFX("snare", 2);
+            // if (GameManager.Instance.BombManager.allBombs.Count > 0)
+                GameManager.Instance.SoundManager.PlaySFX("snare", 2);
         }
 
         ++CurrentBeat;
