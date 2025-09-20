@@ -54,16 +54,26 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.AcceptInput && parameters.DesiredMoveDirection != Vector2Int.zero)
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
+        if (!GameManager.Instance.AcceptInput || parameters.DesiredMoveDirection == Vector2Int.zero)
         {
-            desiredMoveToPos = parameters.GridPosition + parameters.DesiredMoveDirection;
-            if (desiredMoveToPos.x < 0 || desiredMoveToPos.x >= GameManager.Instance.LevelLayout.Width
-                    || desiredMoveToPos.y < 0 || desiredMoveToPos.y >= GameManager.Instance.LevelLayout.Height
-                    || GameManager.Instance.LevelLayout.GetFlag(desiredMoveToPos) == LevelLayoutFlag.Wall
-                    || GameManager.Instance.LevelLayout.GetFlag(desiredMoveToPos) == LevelLayoutFlag.Breakable)
-            {
-                desiredMoveToPos = parameters.GridPosition;
-            }
+            return;
+        }
+
+        Vector2Int currentPosition = parameters.GridPosition;
+        Vector2Int desiredPosition = currentPosition + parameters.DesiredMoveDirection;
+
+        desiredMoveToPos = desiredPosition;
+        if (desiredMoveToPos.x < 0 || desiredMoveToPos.x >= GameManager.Instance.LevelLayout.Width
+            || desiredMoveToPos.y < 0 || desiredMoveToPos.y >= GameManager.Instance.LevelLayout.Height
+            || GameManager.Instance.LevelLayout.GetFlag(desiredMoveToPos) == LevelLayoutFlag.Wall
+            || GameManager.Instance.LevelLayout.GetFlag(desiredMoveToPos) == LevelLayoutFlag.Breakable)
+        {
+            desiredMoveToPos = currentPosition;
         }
     }
 

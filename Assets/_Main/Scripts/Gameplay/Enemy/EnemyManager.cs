@@ -7,69 +7,81 @@ public abstract class EnemyManager : MonoBehaviour
     [Header("References")]
     public Animator Animator;
 
-    [HideInInspector]
-    public Transform SpriteTransform;
-
     [Header("Parameters")]
-    [SerializeField]
     public EnemyParameters Parameters;
-
     public EnemyStats Stats { get; private set; }
 
-    protected Vector2Int desiredMoveToPos;
+    public Transform SpriteTransform { get; private set; }
+    public Vector2Int DesiredPosition { get; private set; }
 
     private void Awake()
     {
         Parameters = new EnemyParameters();
-
         Stats = GetComponent<EnemyStats>();
-
         SpriteTransform = transform.GetChild(0);
-
         OnAwake();
     }
 
     private void Start()
     {
-        GameManager.Instance.AddOnBeatCallback(MoveToDesiredPos);
         GameManager.Instance.AddOnBeatCallback(OnBeat);
-
         OnStart();
-
-        desiredMoveToPos = Parameters.GridPosition;
+        SetDesiredPosition(Parameters.GridPosition);
     }
 
-    private void MoveToDesiredPos()
+    protected virtual void OnAwake()
     {
-        Parameters.GridPosition = desiredMoveToPos;
 
-        if (!finishedMoveToPosAnimation)
-        {
-            StopCoroutine(moveToPosAnimationCoroutine);
-        }
-        moveToPosAnimationCoroutine = MoveToPosAnimationCoroutine(GameManager.Instance.LayoutPosToPosition(desiredMoveToPos));
-        StartCoroutine(moveToPosAnimationCoroutine);
     }
 
-    private bool finishedMoveToPosAnimation = true;
-    private IEnumerator moveToPosAnimationCoroutine;
-    private const float maxTime = 0.5f;
+    protected virtual void OnStart()
+    {
+
+    }
+
+    protected virtual void OnBeat()
+    {
+        MoveToDesiredPosition();
+    }
+
+    public void ForceStopAllActivities()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.RemoveOnBeatCallback(OnBeat);
+        StopAllCoroutines();
+    }
+
+    protected void SetDesiredPosition(Vector2Int desiredPosition)
+    {
+        DesiredPosition = desiredPosition;
+    }
+
+    private void MoveToDesiredPosition()
+    {
+        foreach (var enemy in GameManager.Instance.EnemyWaveManager.Enemies)
+        {
+            if (enemy == this) continue;
+            if (enemy.Parameters.GridPosition == DesiredPosition)
+            {
+                SetDesiredPosition(Parameters.GridPosition);
+            }
+        }
+        Parameters.GridPosition = DesiredPosition;
+        moveToPosAnimationCoroutine ??= StartCoroutine(MoveToPosAnimationCoroutine(GameManager.Instance.LayoutPosToPosition(DesiredPosition)));
+    }
+
+    private const float MAX_TIME = 0.5f;
+    private Coroutine moveToPosAnimationCoroutine;
     private IEnumerator MoveToPosAnimationCoroutine(Vector2 target)
     {
         float time = 0f;
-        while (Vector2.Distance((Vector2)transform.position, target) > 0.01f && time < maxTime)
+        while (Vector2.Distance((Vector2)transform.position, target) > 0.01f && time < MAX_TIME)
         {
-            finishedMoveToPosAnimation = false;
             transform.position = Vector2.MoveTowards(transform.position, target, GameManager.Instance.Player.Data.MoveSpeed * Time.fixedDeltaTime);
             time += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
         transform.position = target;
-        finishedMoveToPosAnimation = true;
+        moveToPosAnimationCoroutine = null;
     }
-
-    protected abstract void OnAwake();
-    protected abstract void OnStart();
-
-    protected abstract void OnBeat();
 }

@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public bool AcceptInput => BeatManager.AcceptInput;
     public void AddOnBeatCallback(Action callback) => BeatManager.AddOnBeatCallback(callback);
+    public void RemoveOnBeatCallback(Action callback) => BeatManager.RemoveOnBeatCallback(callback);
 
     public void DealDamage(Vector2Int pos, int amount, DamageType type) => DamageManager.DealDamage(pos, amount, type);
 
