@@ -25,4 +25,21 @@ public class EnemyWaveManager : MonoBehaviour
 
         return enemy;
     }
+
+    public void RemoveEnemy(EnemyManager enemy)
+    {
+        enemy.ForceStopAllActivities();
+        Destroy(enemy.gameObject);
+        Enemies.Remove(enemy);
+    }
+
+    public void RemoveAllEnemies()
+    {
+        foreach (var enemy in Enemies)
+        {
+            enemy.ForceStopAllActivities();
+            Destroy(enemy.gameObject);
+        }
+        Enemies.Clear();
+    }
 }

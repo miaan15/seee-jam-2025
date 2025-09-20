@@ -42,9 +42,19 @@ public class BeatManager : MonoBehaviour
         OnBeatCallbacks.Add(callback);
     }
 
+    public void RemoveOnBeatCallback(Action callback)
+    {
+        OnBeatCallbacks.Remove(callback);
+    }
+
     public void AddOnPrePlayedBeatCallback(Action callback)
     {
         OnPrePlayedBeatCallbacks.Add(callback);
+    }
+
+    public void RemoveOnPrePlayedBeatCallback(Action callback)
+    {
+        OnPrePlayedBeatCallbacks.Remove(callback);
     }
 
     private void FixedUpdate()

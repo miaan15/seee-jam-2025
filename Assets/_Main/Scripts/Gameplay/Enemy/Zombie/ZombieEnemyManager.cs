@@ -3,13 +3,7 @@ using UnityEngine;
 public class ZombieEnemyManager : EnemyManager
 {
     public ZombieEnemyData Data;
-
-    private int beatCount = 0;
-
-    protected override void OnAwake()
-    {
-
-    }
+    private int movementBeatCount = 0;
 
     protected override void OnStart()
     {
@@ -19,14 +13,30 @@ public class ZombieEnemyManager : EnemyManager
 
     protected override void OnBeat()
     {
-        beatCount++;
+        base.OnBeat();
+        UpdateDesiredPosition();
+    }
 
-        if (beatCount >= Data.Speed)
+    public void UpdateDesiredPosition()
+    {
+        movementBeatCount++;
+        if (movementBeatCount < Data.Speed)
         {
-            beatCount = 0;
-
-            desiredMoveToPos = Parameters.GridPosition + GameManager.Instance.PathFinding.GetMoveToPlayerPolicy(Parameters.GridPosition);
-            GameManager.Instance.LayoutPosToPosition(Parameters.GridPosition);
+            return;
         }
+        movementBeatCount = 0;
+
+        Vector2Int currentPosition = Parameters.GridPosition;
+        Vector2Int desiredPosition = currentPosition + GameManager.Instance.PathFinding.GetMoveToPlayerPolicy(currentPosition);
+        Collider2D collider = Physics2D.OverlapBox(
+            GameManager.Instance.LayoutPosToPosition(desiredPosition),
+            GameManager.Instance.LevelManager.Grid.cellSize * 0.9f, 0f,
+            GameManager.Instance.DamageManager.EverythingLayerMask);
+        if (collider != null && collider.gameObject != gameObject)
+        {
+            return;
+        }
+
+        SetDesiredPosition(desiredPosition);
     }
 }
