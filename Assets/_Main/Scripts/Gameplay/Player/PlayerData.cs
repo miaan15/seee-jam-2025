@@ -4,4 +4,5 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public int Health;
+    public float MoveSpeed;
 }

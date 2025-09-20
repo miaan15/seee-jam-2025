@@ -26,7 +26,7 @@ public class ZombieEnemyManager : EnemyManager
             beatCount = 0;
 
             desiredMoveToPos = Parameters.GridPosition + GameManager.Instance.PathFinding.GetMoveToPlayerPolicy(Parameters.GridPosition);
-            Parameters.GridPosition = desiredMoveToPos;
+            GameManager.Instance.LayoutPosToPosition(Parameters.GridPosition);
         }
     }
 }

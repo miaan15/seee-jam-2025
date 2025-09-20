@@ -16,18 +16,18 @@ MonoBehaviour:
   - Name: bgm
     Clip: {fileID: 8300000, guid: 3f226e39b3d2a1b43b7332791361af01, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     RandomVolume: 0
     RandomPitch: 0
   - Name: snare
     Clip: {fileID: 8300000, guid: b25064108848f9e449e6cb903f90f902, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     RandomVolume: 0
     RandomPitch: 0
   - Name: kick
     Clip: {fileID: 8300000, guid: dd9bb023dcec25047af65ff0b6ba1a9f, type: 3}
     Volume: 1
-    Pitch: 0
+    Pitch: 1
     RandomVolume: 0
     RandomPitch: 0

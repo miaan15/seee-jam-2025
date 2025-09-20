@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -86,7 +87,31 @@ public class PlayerController : MonoBehaviour
 
     private void MoveToDesiredPos()
     {
-        transform.position = GameManager.Instance.LayoutPosToPosition(desiredMoveToPos);
+        if (parameters.GridPosition != desiredMoveToPos) manager.Animator.Play("Move");
         parameters.GridPosition = desiredMoveToPos;
+
+        if (!finishedMoveToPosAnimation)
+        {
+            StopCoroutine(moveToPosAnimationCoroutine);
+        }
+        moveToPosAnimationCoroutine = MoveToPosAnimationCoroutine(GameManager.Instance.LayoutPosToPosition(desiredMoveToPos));
+        StartCoroutine(moveToPosAnimationCoroutine);
+    }
+
+    private bool finishedMoveToPosAnimation = true;
+    private IEnumerator moveToPosAnimationCoroutine;
+    private const float maxTime = 0.5f;
+    private IEnumerator MoveToPosAnimationCoroutine(Vector2 target)
+    {
+        float time = 0f;
+        while (Vector2.Distance((Vector2)transform.position, target) > 0.01f && time < maxTime)
+        {
+            finishedMoveToPosAnimation = false;
+            transform.position = Vector2.MoveTowards(transform.position, target, data.MoveSpeed * Time.fixedDeltaTime);
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        transform.position = target;
+        finishedMoveToPosAnimation = true;
     }
 }

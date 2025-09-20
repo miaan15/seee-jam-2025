@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyStats))]
@@ -40,7 +41,31 @@ public abstract class EnemyManager : MonoBehaviour
 
     private void MoveToDesiredPos()
     {
-        transform.position = GameManager.Instance.LayoutPosToPosition(desiredMoveToPos);
+        Parameters.GridPosition = desiredMoveToPos;
+
+        if (!finishedMoveToPosAnimation)
+        {
+            StopCoroutine(moveToPosAnimationCoroutine);
+        }
+        moveToPosAnimationCoroutine = MoveToPosAnimationCoroutine(GameManager.Instance.LayoutPosToPosition(desiredMoveToPos));
+        StartCoroutine(moveToPosAnimationCoroutine);
+    }
+
+    private bool finishedMoveToPosAnimation = true;
+    private IEnumerator moveToPosAnimationCoroutine;
+    private const float maxTime = 0.5f;
+    private IEnumerator MoveToPosAnimationCoroutine(Vector2 target)
+    {
+        float time = 0f;
+        while (Vector2.Distance((Vector2)transform.position, target) > 0.01f && time < maxTime)
+        {
+            finishedMoveToPosAnimation = false;
+            transform.position = Vector2.MoveTowards(transform.position, target, GameManager.Instance.Player.Data.MoveSpeed * Time.fixedDeltaTime);
+            time += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        transform.position = target;
+        finishedMoveToPosAnimation = true;
     }
 
     protected abstract void OnAwake();
