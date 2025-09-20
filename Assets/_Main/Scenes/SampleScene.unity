@@ -1153,6 +1153,7 @@ GameObject:
   - component: {fileID: 1419168701}
   - component: {fileID: 1419168702}
   - component: {fileID: 1419168703}
+  - component: {fileID: 1419168704}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1286,6 +1287,20 @@ MonoBehaviour:
   EnemySpawnTiles:
   - {fileID: 11400000, guid: b61e77624f0edf7479e251bbf78dae02, type: 2}
   - {fileID: 11400000, guid: ef193bf6d16630c44a3b13753462e05d, type: 2}
+--- !u!114 &1419168704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419168695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba470f50e9ea76f42bc211a661d56ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundAsset: {fileID: 11400000, guid: e9b8f0e6b9fe0474793278d8002fe8d9, type: 2}
+  AudioMixerGroup: {fileID: 24300002, guid: be19d0f2279bc724299a615b6ac83716, type: 2}
 --- !u!1 &1939826498
 GameObject:
   m_ObjectHideFlags: 0

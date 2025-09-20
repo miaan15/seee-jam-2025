@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public PathFindingManager PathFinding { get; private set; }
     public BombManager BombManager { get; private set; }
     public EnemyWaveManager EnemyWaveManager { get; private set; }
+    public SoundManager SoundManager { get; private set; }
 
     public PlayerManager Player { get; private set; }
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         PathFinding = GetComponent<PathFindingManager>();
         BombManager = GetComponent<BombManager>();
         EnemyWaveManager = GetComponent<EnemyWaveManager>();
+        SoundManager = GetComponent<SoundManager>();
 
         Player = FindFirstObjectByType<PlayerManager>();
     }

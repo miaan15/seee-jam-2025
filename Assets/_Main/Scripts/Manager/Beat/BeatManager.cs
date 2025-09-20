@@ -30,6 +30,7 @@ public class BeatManager : MonoBehaviour
     public void Play()
     {
         played = true;
+        GameManager.Instance.SoundManager.PlayBGM("bgm");
     }
 
     public void AddOnBeatCallback(Action callback)

@@ -70,10 +70,12 @@ public class PlayerController : MonoBehaviour
         if (BombBeat[CurrentBeat])
         {
             GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, 0);
+            GameManager.Instance.SoundManager.PlaySFX("kick", 1);
         }
         if (DetoBeat[CurrentBeat])
         {
             GameManager.Instance.BombManager.Detonate();
+            GameManager.Instance.SoundManager.PlaySFX("snare", 2);
         }
 
         ++CurrentBeat;
