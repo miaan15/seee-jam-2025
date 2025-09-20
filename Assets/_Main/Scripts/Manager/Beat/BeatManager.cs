@@ -27,6 +27,11 @@ public class BeatManager : MonoBehaviour
         denyInputTimeStamp.Set(Interval + LateAcceptInputOffset);
     }
 
+    public void Pause()
+    {
+        played = false;
+    }
+
     public void Play()
     {
         played = true;

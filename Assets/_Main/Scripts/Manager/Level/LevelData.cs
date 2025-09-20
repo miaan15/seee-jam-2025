@@ -16,6 +16,9 @@ public class LevelData : MonoBehaviour
     public int WallBoundThickness;
     public Vector2Int ExtraSpace;
 
+    [Space(10)]
+    public Vector2Int PlayerStartPos;
+
     [HideInInspector]
     public LevelLayout Layout = null;
     public List<int> enemyIDs;

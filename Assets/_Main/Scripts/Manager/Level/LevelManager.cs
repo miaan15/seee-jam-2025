@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [Header("Data")]
     public int Width;
     public int Height;
+    public float CamSize;
 
     public LevelData LevelData;
 
@@ -26,18 +27,12 @@ public class LevelManager : MonoBehaviour
     private LevelLayout layout;
     public LevelLayout Layout => layout;
 
-    private void Awake()
+    public void LoadLevel()
     {
         layout = LevelData.GetLayout();
-    }
 
-    private void Start()
-    {
-        LoadLevel();
-    }
+        MainCamera.orthographicSize = CamSize;
 
-    private void LoadLevel()
-    {
         var levelObj = Instantiate(LevelData, Grid.transform).GetComponent<LevelData>();
 
         levelObj.wallMap.gameObject.SetActive(false);

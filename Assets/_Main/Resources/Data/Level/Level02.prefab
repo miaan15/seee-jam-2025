@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 4576006572468556024}
   - component: {fileID: 4486189093650051863}
   m_Layer: 0
-  m_Name: Level00
+  m_Name: Level02
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -739,6 +739,7 @@ MonoBehaviour:
   breakableObject: {fileID: 7498193638521741833, guid: a609e5108d4eb264ea969f8336fcdacf, type: 3}
   WallBoundThickness: 15
   ExtraSpace: {x: 0, y: 0}
+  PlayerStartPos: {x: 0, y: 0}
   enemyIDs: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 --- !u!1 &4753948134191139705
 GameObject:

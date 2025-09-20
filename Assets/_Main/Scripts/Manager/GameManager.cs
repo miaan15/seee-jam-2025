@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(LevelManager))]
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
     public void DealDamage(Vector2Int pos, int amount, DamageType type) => DamageManager.DealDamage(pos, amount, type);
 
     public GameObject TestSprite;
+    public Animator LevelCoverAnimator;
 
     private void Awake()
     {
@@ -74,5 +76,52 @@ public class GameManager : MonoBehaviour
         SoundManager = GetComponent<SoundManager>();
 
         Player = FindFirstObjectByType<PlayerManager>();
+    }
+
+    private void Start()
+    {
+        LoadLevel();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LoadLevel();
+        }
+    }
+
+    public void LoadLevel()
+    {
+        StartCoroutine(LoadLevelCoroutine());
+    }
+
+    private IEnumerator LoadLevelCoroutine()
+    {
+        LevelCoverAnimator.SetTrigger("Start");
+
+        BeatManager.Pause();
+
+        yield return new WaitForSeconds(.5f);
+        // =============================================================================
+
+        if (LevelManager.Grid.transform.childCount > 0)
+        {
+            Destroy(LevelManager.Grid.transform.GetChild(0).gameObject);
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (LevelManager.Grid.transform.childCount > 0)
+        {
+            Destroy(LevelManager.Grid.transform.GetChild(0).gameObject);
+            yield return new WaitForEndOfFrame();
+        }
+
+        LevelManager.LoadLevel();
+
+        yield return new WaitForEndOfFrame();
+
+        LevelCoverAnimator.SetTrigger("End");
+        BeatIndicatorManager.Instance.StartIndicators();
     }
 }
