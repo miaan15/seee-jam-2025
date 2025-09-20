@@ -24,7 +24,9 @@ public class BeatIndicatorManager : MonoBehaviour
     public BeatIndicator Prototype;
 
     public bool started = false;
-    public int skip = 2;
+    public int skip = 1;
+
+    private bool bgmNext = true;
 
     public void StartIndicators()
     {
@@ -34,12 +36,19 @@ public class BeatIndicatorManager : MonoBehaviour
         }
         started = false;
         skip = 2;
+        bgmNext = true;
     }
 
     private void Start()
     {
         GameManager.Instance.BeatManager.AddOnPrePlayedBeatCallback(() =>
         {
+            if (bgmNext)
+            {
+                GameManager.Instance.SoundManager.PlayBGM("bgm");
+                bgmNext = false;
+            }
+
             if (skip > 0)
             {
                 skip--;
@@ -50,6 +59,7 @@ public class BeatIndicatorManager : MonoBehaviour
             {
                 BeatIndicator p = Instantiate(Prototype, transform).GetComponent<BeatIndicator>();
                 p.Callback = HereTheStoryStarted;
+                p.GetComponent<RectTransform>().sizeDelta = new Vector2(p.GetComponent<RectTransform>().sizeDelta.x, 0f);
                 started = true;
             }
             else

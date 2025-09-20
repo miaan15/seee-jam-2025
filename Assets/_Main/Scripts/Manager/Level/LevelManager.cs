@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
 
         MainCamera.transform.position = new Vector3(
             (Layout.Width * Grid.cellSize.x) / 2f,
-            (Layout.Height * Grid.cellSize.y) / 2f,
+            (Layout.Height * Grid.cellSize.y) / 2f - CamSize * .1f,
             MainCamera.transform.position.z
         );
     }

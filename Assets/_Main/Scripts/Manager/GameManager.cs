@@ -123,5 +123,6 @@ public class GameManager : MonoBehaviour
 
         LevelCoverAnimator.SetTrigger("End");
         BeatIndicatorManager.Instance.StartIndicators();
+
     }
 }

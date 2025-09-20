@@ -372,7 +372,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -255}
+  m_AnchoredPosition: {x: 0, y: -246}
   m_SizeDelta: {x: 580, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &423755484
@@ -397,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prototype: {fileID: 8889953853092117525, guid: be9d61acc650251b0a88c5f789a8042a, type: 3}
   started: 0
+  skip: 2
 --- !u!1 &428321016
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,8 +431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: -16.5}
-  m_SizeDelta: {x: 28.5, y: 28.5}
+  m_AnchoredPosition: {x: 30.5, y: -32.980427}
+  m_SizeDelta: {x: 61.75, y: 61.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &428321018
 CanvasRenderer:
@@ -655,8 +656,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 14, y: 16}
-  m_SizeDelta: {x: 28.5, y: 28.5}
+  m_AnchoredPosition: {x: 30.5, y: -32.98043}
+  m_SizeDelta: {x: 61.75, y: 61.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &591839966
 CanvasRenderer:
@@ -826,7 +827,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2311659948842064771, guid: 6f9373a5e5f4a6747aad6e27a05b1633, type: 3}
+  m_Sprite: {fileID: -4398183398628465896, guid: 8337373438d267c42b0ae7add646788e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1055,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38533a32ce5c56c46bb7ec4fb8f07942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Length: 16
+  Length: 8
   BombBeat: 
   DetoBeat: 
   CurrentBeat: 0
@@ -1224,8 +1225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35083f72e69bb317eaf4de85bef62ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interval: 0.5
-  EarlyAcceptInputOffset: 0.25
+  Interval: 0.42857143
+  EarlyAcceptInputOffset: 0.3
   LateAcceptInputOffset: 0
   AcceptInput: 0
 --- !u!114 &1419168700
@@ -1412,8 +1413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -337}
-  m_SizeDelta: {x: 520, y: 61}
+  m_AnchoredPosition: {x: 0, y: -303.89075}
+  m_SizeDelta: {x: 520, y: 127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1939826501
 CanvasRenderer:
@@ -1437,9 +1438,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BombInvenTransform: {fileID: 591839965}
   DetoInvenTransform: {fileID: 428321017}
-  Num: 16
-  Space: 32.7
-  Size: {x: 28.5, y: 28.5}
+  Num: 8
+  Space: 65.48044
+  Size: {x: 61.75, y: 61.75}
 --- !u!1 &2015067676
 GameObject:
   m_ObjectHideFlags: 0

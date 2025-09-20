@@ -66,8 +66,10 @@ public class SoundManager : MonoBehaviour
         source__.Play();
     }
 
-    public void PlayBGM(string name)
+    public void PlayBGM(string name, bool overlap = false)
     {
+        if (!overlap && _bgmAudioSource.isPlaying) return;
+
         _bgmAudioSource.Stop();
 
         var data = SoundAsset.Sounds.Find(p => p.Name == name);
