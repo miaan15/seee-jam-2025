@@ -1681,6 +1681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 3
+  InvisibleDuration: 0.3
 --- !u!1 &1211477835
 GameObject:
   m_ObjectHideFlags: 0
