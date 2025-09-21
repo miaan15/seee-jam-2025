@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private TimeStamp lockInputTimeStamp = new();
 
-    private Vector2Int desiredMoveToPos;
+    public Vector2Int desiredMoveToPos;
 
     public int Length = 8;
 

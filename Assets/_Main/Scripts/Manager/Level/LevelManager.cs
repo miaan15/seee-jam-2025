@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -29,7 +30,16 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        layout = LevelData.GetLayout();
+        var t_layout = LevelData.GetLayout();
+
+        layout = new LevelLayout(t_layout.Width, t_layout.Height);
+        for (int y = 0; y < t_layout.Height; y++)
+        {
+            for (int x = 0; x < t_layout.Width; x++)
+            {
+                layout.SetFlag(x, y, t_layout.GetFlag(x, y));
+            }
+        }
 
         MainCamera.orthographicSize = CamSize;
 

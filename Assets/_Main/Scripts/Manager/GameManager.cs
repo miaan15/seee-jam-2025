@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadLevel();
+        askAdd = true;
     }
 
     private void Update()
@@ -94,13 +95,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadLevel()
+    public void LoadLevel(float delay = 0f)
     {
-        StartCoroutine(LoadLevelCoroutine());
+        StartCoroutine(LoadLevelCoroutine(delay));
     }
 
-    private IEnumerator LoadLevelCoroutine()
+    private bool askAdd = false;
+    public bool finishAsk = false;
+    private IEnumerator LoadLevelCoroutine(float delay)
     {
+        finishAsk = false;
+
+        yield return new WaitForSeconds(delay);
+
         LevelCoverAnimator.SetTrigger("Start");
 
         BeatManager.Pause();
@@ -120,7 +127,21 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        EnemyWaveManager.RemoveAllEnemies();
+        yield return new WaitForEndOfFrame();
+
         LevelManager.LoadLevel();
+
+        Player.Parameters.GridPosition = LevelManager.LevelData.PlayerStartPos;
+        Player.PlayerController.desiredMoveToPos = LevelManager.LevelData.PlayerStartPos;
+        Player.transform.position = LayoutPosToPosition(LevelManager.LevelData.PlayerStartPos);
+
+        Player.PlayerController.CurrentBeat = 0;
+
+        if (askAdd)
+        {
+            yield return new WaitUntil(() => finishAsk);
+        }
 
         yield return new WaitForEndOfFrame();
 

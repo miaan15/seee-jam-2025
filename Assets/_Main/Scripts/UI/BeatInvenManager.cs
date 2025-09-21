@@ -17,6 +17,8 @@ public class BeatInvenManager : MonoBehaviour
 
     private void ClickBombInven(int index)
     {
+        if (GameManager.Instance.finishAsk) return;
+
         GameManager.Instance.Player.PlayerController.BombBeat[index] = true;
 
         GameObject go = new GameObject($"idk", typeof(RectTransform), typeof(Image));
@@ -38,6 +40,7 @@ public class BeatInvenManager : MonoBehaviour
         Vector2 pos = (Vector2)originLocal + new Vector2(index * Space, 0f);
         rt.anchoredPosition = pos;
 
+        GameManager.Instance.finishAsk = true;
     }
 
     private void ClickDetoInven(int index)
