@@ -15,6 +15,13 @@ public class DamageManager : MonoBehaviour
 
     public void DealDamage(Vector2Int pos, int amount, DamageType type)
     {
+        StartCoroutine(DealDamageDelayed(pos, amount, type));
+    }
+
+    private System.Collections.IEnumerator DealDamageDelayed(Vector2Int pos, int amount, DamageType type)
+    {
+        yield return new WaitForSeconds(0.1f);
+
         var center = GameManager.Instance.LayoutPosToPosition(pos);
         var layermask = type switch
         {

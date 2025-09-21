@@ -135,6 +135,13 @@ public class PlayerController : MonoBehaviour
     private const float maxTime = 0.5f;
     private IEnumerator MoveToPosAnimationCoroutine(Vector2 target)
     {
+        // Make the collider offsest to desired position first
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.offset = (Vector2)desiredMoveToPos - parameters.GridPosition;
+        }
+
         float time = 0f;
         while (Vector2.Distance((Vector2)transform.position, target) > 0.01f && time < maxTime)
         {
@@ -145,5 +152,10 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = target;
         finishedMoveToPosAnimation = true;
+
+        if (collider != null)
+        {
+            collider.offset = Vector2.zero;
+        }
     }
 }
