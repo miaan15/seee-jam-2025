@@ -9,7 +9,7 @@ public class BombManager : MonoBehaviour
 
     public List<Bomb> allBombs = new();
 
-    public void SpawnBomb(Vector2Int pos, int power = 1, int damage = 1)
+    public void SpawnBomb(Vector2Int pos, int power = 0, int damage = 1)
     {
         foreach (var b in allBombs)
         {

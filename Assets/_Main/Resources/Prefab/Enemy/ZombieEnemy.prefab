@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 8219949541666425117}
-  SpriteTransform: {fileID: 0}
   Parameters:
     GridPosition: {x: 0, y: 0}
   Data: {fileID: 11400000, guid: 5f4a9b09d46795a41a5b6a71362db290, type: 2}
@@ -232,8 +231,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1325205120640645288, guid: 039638a696e6152489178dd1db686434, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 4801227835787818748, guid: d535d73ba32048045a5e876b5cacbb6d, type: 3}
+  m_Color: {r: 1, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

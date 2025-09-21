@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Power: 0
   Damage: 0
+  color: {r: 1, g: 0, b: 0, a: 1}
   GridPosition: {x: 0, y: 0}
 --- !u!58 &4373309897210132779
 CircleCollider2D:

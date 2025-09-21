@@ -97,15 +97,16 @@ public class PlayerController : MonoBehaviour
         if (desiredMoveToPos != currentPosition)
         {
             GameManager.Instance.SoundManager.PlaySFX("move");
-
         }
     }
 
     private void OnBeat()
     {
+        MoveToDesiredPos();
+        
         if (BombBeat[CurrentBeat])
         {
-            GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, 0);
+            GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, -1);
             GameManager.Instance.SoundManager.PlaySFX("kick", 1);
         }
         if (DetoBeat[CurrentBeat])
@@ -118,8 +119,6 @@ public class PlayerController : MonoBehaviour
 
         ++CurrentBeat;
         if (CurrentBeat >= Length) CurrentBeat = 0;
-
-        MoveToDesiredPos();
     }
 
     private void MoveToDesiredPos()

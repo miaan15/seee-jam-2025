@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour
 
         var tilemap = new GameObject("Tilemap", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
         tilemap.transform.SetParent(Grid.transform);
+        tilemap.color = new Color(130f / 255f, 130f / 255f, 0f, 1f);
 
         for (int y = -LevelData.WallBoundThickness; y < Layout.Height + LevelData.WallBoundThickness; y++)
         {

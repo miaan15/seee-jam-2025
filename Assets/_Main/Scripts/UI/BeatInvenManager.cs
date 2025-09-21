@@ -6,6 +6,7 @@ public class BeatInvenManager : MonoBehaviour
     public RectTransform BombInvenTransform;
     public RectTransform DetoInvenTransform;
     public RectTransform CurBeatTransform;
+    public Sprite InvenSprite;
 
     public int Num;
     public float Space;
@@ -26,6 +27,10 @@ public class BeatInvenManager : MonoBehaviour
         rt.anchorMin = new Vector2(0.5f, 0.5f);
         rt.anchorMax = new Vector2(0.5f, 0.5f);
         rt.pivot = new Vector2(0.5f, 0.5f);
+
+        var img = go.GetComponent<Image>();
+        img.sprite = InvenSprite;
+        img.color = new Color(130f / 255f, 130f / 255f, 0f, 1f);
 
         RectTransform origin = BombInvenTransform;
         Vector3 originWorld = origin.TransformPoint(origin.rect.center);
@@ -78,6 +83,8 @@ public class BeatInvenManager : MonoBehaviour
             onClick: ClickDetoInven,
             rowName: "DetoBtn_"
         );
+
+        ClickBombInven(3);
     }
 
     private Button[] CreateRow(RectTransform origin, int count, System.Action<int> onClick, string rowName)
