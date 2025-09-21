@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(LevelManager))]
 [RequireComponent(typeof(BeatManager))]
@@ -66,6 +67,10 @@ public class GameManager : MonoBehaviour
     public GameObject TestSprite;
     public Animator LevelCoverAnimator;
 
+    // !!! DEBUG !!! REMOVE LATER
+    [SerializeField]
+    private GameState GameState;
+
     private void Awake()
     {
         LevelManager = GetComponent<LevelManager>();
@@ -84,6 +89,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadLevel();
+        // !!! DEBUG !!! REMOVE LATER
+        GameState.IsWinning = false;
         askAdd = true;
     }
 
@@ -92,6 +99,30 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             LoadLevel();
+        }
+
+        // !!! DEBUG !!! REMOVE LATER
+        // Win
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            EndGame(true);
+        }
+        // Lose
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            EndGame(false);
+        }
+    }
+
+    // !!! DEBUG !!! REMOVE LATER
+    public void EndGame(bool isWinning)
+    {
+        GameState.IsWinning = isWinning;
+
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (sceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(sceneIndex);
         }
     }
 
