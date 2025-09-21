@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
         SoundManager = GetComponent<SoundManager>();
 
         Player = FindFirstObjectByType<PlayerManager>();
+
+        ScreenShake.Initialize(Camera.main, this);
     }
 
     private void Start()

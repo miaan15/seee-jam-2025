@@ -57,6 +57,11 @@ public class BeatManager : MonoBehaviour
         OnPrePlayedBeatCallbacks.Remove(callback);
     }
 
+    public float GetDebugTime()
+    {
+        return nextBeatTimeStamp.time - Time.time;
+    }
+
     private void FixedUpdate()
     {
         if (acceptInputTimeStamp.Reached())

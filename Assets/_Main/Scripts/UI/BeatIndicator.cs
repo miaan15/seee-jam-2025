@@ -16,7 +16,7 @@ public class BeatIndicator : MonoBehaviour
 
     private void Start()
     {
-        delta = rectTransform.sizeDelta.x / (GameManager.Instance.BeatManager.Interval * 3.5f);
+        delta = rectTransform.sizeDelta.x / (GameManager.Instance.BeatManager.Interval * 3f);
     }
 
     private void FixedUpdate()

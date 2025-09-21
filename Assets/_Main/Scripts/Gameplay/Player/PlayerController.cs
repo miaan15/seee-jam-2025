@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private PlayerData data;
     public GameInput input;
 
+    private TimeStamp lockInputTimeStamp = new();
+
     private Vector2Int desiredMoveToPos;
 
     public int Length = 8;
@@ -41,6 +43,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         parameters.MoveDirectionInput = input.Player.Move.ReadValue<Vector2>();
+        if (!input.Player.Move.WasPerformedThisFrame()) parameters.MoveDirectionInput = Vector2.zero;
+        if (parameters.MoveDirectionInput.magnitude > 0.1f)
+        {
+            Debug.Log(GameManager.Instance.BeatManager.GetDebugTime());
+        }
+
         parameters.DesiredMoveDirection = Vector2Int.zero;
         if (Mathf.Abs(parameters.MoveDirectionInput.x) > 0)
         {
@@ -50,15 +58,25 @@ public class PlayerController : MonoBehaviour
         {
             parameters.DesiredMoveDirection.y = (int)Mathf.Sign(parameters.MoveDirectionInput.y);
         }
-    }
 
-    private void FixedUpdate()
-    {
         MovePlayer();
     }
 
     private void MovePlayer()
     {
+        if (!lockInputTimeStamp.Reached() && lockInputTimeStamp.Setted())
+        {
+            return;
+        }
+        if (!GameManager.Instance.AcceptInput && parameters.DesiredMoveDirection != Vector2Int.zero)
+        {
+            lockInputTimeStamp.Set(GameManager.Instance.BeatManager.Interval * .95f);
+            GameManager.Instance.SoundManager.PlaySFX("error");
+            NerrController.Miss();
+            ScreenShake.Shake(0.03f, 0.03f);
+            return;
+        }
+
         if (!GameManager.Instance.AcceptInput || parameters.DesiredMoveDirection == Vector2Int.zero)
         {
             return;
@@ -75,6 +93,12 @@ public class PlayerController : MonoBehaviour
         {
             desiredMoveToPos = currentPosition;
         }
+
+        if (desiredMoveToPos != currentPosition)
+        {
+            GameManager.Instance.SoundManager.PlaySFX("move");
+
+        }
     }
 
     private void OnBeat()
@@ -88,7 +112,8 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.BombManager.Detonate();
             // if (GameManager.Instance.BombManager.allBombs.Count > 0)
-                GameManager.Instance.SoundManager.PlaySFX("snare", 2);
+            GameManager.Instance.SoundManager.PlaySFX("snare", 2);
+            ScreenShake.Shake(0.25f, 0.25f);
         }
 
         ++CurrentBeat;

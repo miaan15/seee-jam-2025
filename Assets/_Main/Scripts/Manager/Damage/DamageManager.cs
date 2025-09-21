@@ -28,7 +28,8 @@ public class DamageManager : MonoBehaviour
         foreach (var collider in colliders)
         {
             var damageable = collider.GetComponent<IDamageable>();
-            damageable.TakeDamage(amount);
+            if (damageable != null)
+                damageable.TakeDamage(amount);
         }
     }
 }

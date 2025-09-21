@@ -19,6 +19,11 @@ public class TimeStamp
         time = -1f;
     }
 
+    public bool Setted()
+    {
+        return time >= 0f;
+    }
+
     public bool Check()
     {
         if (time < 0f)

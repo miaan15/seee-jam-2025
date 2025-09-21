@@ -13,7 +13,10 @@ public class Bomb : MonoBehaviour
     private void Start()
     {
         StartCoroutine(UnlockUpPowerCoroutine());
-        GameManager.Instance.AddOnBeatCallback(() => { if (!lockUpPower) Power++; });
+        GameManager.Instance.AddOnBeatCallback(() =>
+        {
+            if (!lockUpPower && Power < 4) Power++;
+        });
     }
 
     private IEnumerator UnlockUpPowerCoroutine()
