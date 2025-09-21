@@ -44,10 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         parameters.MoveDirectionInput = input.Player.Move.ReadValue<Vector2>();
         if (!input.Player.Move.WasPerformedThisFrame()) parameters.MoveDirectionInput = Vector2.zero;
-        if (parameters.MoveDirectionInput.magnitude > 0.1f)
-        {
-            Debug.Log(GameManager.Instance.BeatManager.GetDebugTime());
-        }
 
         parameters.DesiredMoveDirection = Vector2Int.zero;
         if (Mathf.Abs(parameters.MoveDirectionInput.x) > 0)
@@ -103,7 +99,7 @@ public class PlayerController : MonoBehaviour
     private void OnBeat()
     {
         MoveToDesiredPos();
-        
+
         if (BombBeat[CurrentBeat])
         {
             GameManager.Instance.BombManager.SpawnBomb(parameters.GridPosition, -1);

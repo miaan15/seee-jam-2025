@@ -4,6 +4,8 @@ using UnityEngine;
 public class ZombieEnemyData : ScriptableObject
 {
     public int Health;
+    public int Damage;
 
-    public int Speed;
+    public int MovementSpeed;
+    public int RecoverySpeed;
 }

@@ -4,6 +4,8 @@ public class ZombieEnemyManager : EnemyManager
 {
     public ZombieEnemyData Data;
     private int movementBeatCount = 0;
+    private int recoveryBeatCount = 0;
+    private bool hasHitPlayer = false;
 
     protected override void OnStart()
     {
@@ -15,12 +17,13 @@ public class ZombieEnemyManager : EnemyManager
     {
         base.OnBeat();
         UpdateDesiredPosition();
+        DamagePlayerOnContact();
     }
 
     public void UpdateDesiredPosition()
     {
         movementBeatCount++;
-        if (movementBeatCount < Data.Speed)
+        if (movementBeatCount < Data.MovementSpeed)
         {
             return;
         }
@@ -28,6 +31,8 @@ public class ZombieEnemyManager : EnemyManager
 
         Vector2Int currentPosition = Parameters.GridPosition;
         Vector2Int policy = GameManager.Instance.PathFinding.GetMoveToPlayerPolicy(currentPosition);
+
+        Collider2D collider;
 
         if (policy == Vector2Int.zero)
         {
@@ -38,20 +43,20 @@ public class ZombieEnemyManager : EnemyManager
                 Vector2Int.left,
                 Vector2Int.right
             };
-            int rng = Random.Range(0, directions.Length);
+            int range = Random.Range(0, directions.Length);
 
-            Vector2Int _desiredPosition = currentPosition + directions[rng];
+            Vector2Int _desiredPosition = currentPosition + directions[range];
             while (GameManager.Instance.LevelLayout.GetFlag(_desiredPosition) == LevelLayoutFlag.Wall)
             {
-                rng = (rng + 1) % directions.Length;
-                _desiredPosition = currentPosition + directions[rng];
+                range = (range + 1) % directions.Length;
+                _desiredPosition = currentPosition + directions[range];
             }
 
-            Collider2D _collider = Physics2D.OverlapBox(
-            GameManager.Instance.LayoutPosToPosition(_desiredPosition),
-            GameManager.Instance.LevelManager.Grid.cellSize * 0.9f, 0f,
-            GameManager.Instance.DamageManager.EverythingLayerMask);
-            if (_collider != null && _collider.gameObject != gameObject)
+            collider = Physics2D.OverlapBox(
+                GameManager.Instance.LayoutPosToPosition(_desiredPosition),
+                GameManager.Instance.LevelManager.Grid.cellSize * 0.9f, 0f,
+                GameManager.Instance.DamageManager.EverythingLayerMask);
+            if (collider != null && collider.gameObject != gameObject)
             {
                 return;
             }
@@ -60,15 +65,43 @@ public class ZombieEnemyManager : EnemyManager
         }
 
         Vector2Int desiredPosition = currentPosition + policy;
-        Collider2D collider = Physics2D.OverlapBox(
+        collider = Physics2D.OverlapBox(
             GameManager.Instance.LayoutPosToPosition(desiredPosition),
             GameManager.Instance.LevelManager.Grid.cellSize * 0.9f, 0f,
-            GameManager.Instance.DamageManager.EverythingLayerMask);
+            GameManager.Instance.DamageManager.EnemyOnlyLayerMask);
         if (collider != null && collider.gameObject != gameObject)
         {
             return;
         }
-
         SetDesiredPosition(desiredPosition);
+    }
+
+    private void DamagePlayerOnContact()
+    {
+        Vector2Int currentPosition = Parameters.GridPosition;
+        Collider2D collider = Physics2D.OverlapBox(
+            GameManager.Instance.LayoutPosToPosition(currentPosition),
+            GameManager.Instance.LevelManager.Grid.cellSize * 0.9f, 0f,
+            GameManager.Instance.DamageManager.PlayerOnlyLayerMask);
+        if (collider == null || collider.gameObject != GameManager.Instance.Player.gameObject)
+        {
+            recoveryBeatCount = 0;
+            return;
+        }
+
+        if (hasHitPlayer)
+        {
+            recoveryBeatCount++;
+            if (recoveryBeatCount < Data.RecoverySpeed)
+            {
+                return;
+            }
+            hasHitPlayer = false;
+            recoveryBeatCount = 0;
+        }
+
+        Debug.Log($"Zombie hit player for {Data.Damage} damage.");
+        GameManager.Instance.Player.PlayerStats.TakeDamage(Data.Damage);
+        hasHitPlayer = true;
     }
 }
