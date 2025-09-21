@@ -41,6 +41,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        Health.Instance.CurHealth = PlayerStats.Health;
+        if (Health.Instance != null)
+        {
+            Health.Instance.CurHealth = PlayerStats.Health;
+        }
     }
 }

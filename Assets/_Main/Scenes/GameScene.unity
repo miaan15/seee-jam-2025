@@ -1550,6 +1550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TestSprite: {fileID: 5704069383143472286, guid: 18cb522190db89c439588b7bafa30cb2, type: 3}
   LevelCoverAnimator: {fileID: 2015067678}
+  Levels:
+  - {fileID: 4486189093650051863, guid: 832e575d0b9462a49aee5f94b031442c, type: 3}
+  - {fileID: 4486189093650051863, guid: e557dc5d9dcd42043a1e333c0512d3af, type: 3}
+  CurrentLevelIndex: 0
   GameState: {fileID: 11400000, guid: e17ebc3bcdbedfc42a5b8a3c63345a58, type: 2}
   finishAsk: 0
 --- !u!114 &1419168698
