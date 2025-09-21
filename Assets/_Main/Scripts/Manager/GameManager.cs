@@ -97,30 +97,16 @@ public class GameManager : MonoBehaviour
         askAdd = true;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            LoadLevel(CurrentLevelIndex, 0f, false);
-        }
-
-        // !!! DEBUG !!! REMOVE LATER
-        // Win
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            EndGame(true);
-        }
-        // Lose
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            EndGame(false);
-        }
-    }
-
     // !!! DEBUG !!! REMOVE LATER
     public void EndGame(bool isWinning)
     {
+        StartCoroutine(EndGameCoroutine(isWinning, 0.3f));
+    }
+
+    private IEnumerator EndGameCoroutine(bool isWinning, float delay)
+    {
         GameState.IsWinning = isWinning;
+        yield return new WaitForSeconds(delay);
 
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (sceneIndex < SceneManager.sceneCountInBuildSettings)
@@ -135,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (CurrentLevelIndex >= Levels.Length)
         {
             CurrentLevelIndex = 0;
-            // TODO
+            EndGame(true);
         }
         LoadLevel(CurrentLevelIndex, .3f);
     }

@@ -40,7 +40,9 @@ public class Bomb : MonoBehaviour
         Instantiate(
             GameManager.Instance.TestSprite, GameManager.Instance.LayoutPosToPosition(GridPosition), Quaternion.identity
         ).GetComponent<SpriteRenderer>().color = color;
-        for (int k = 1; k <= Power; k++)
+        int truePower = Power;
+        if (Power > 1) truePower--;
+        for (int k = 1; k <= truePower; k++)
         {
             for (int i = 0; i < 4; i++)
             {

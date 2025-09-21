@@ -15,4 +15,4 @@ MonoBehaviour:
   Health: 1
   Damage: 1
   MovementSpeed: 2
-  RecoverySpeed: 1
+  RecoverySpeed: 2

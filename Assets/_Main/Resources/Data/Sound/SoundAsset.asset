@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Name: bgm
-    Clip: {fileID: 8300000, guid: ed2d41497cbddb84590ec6067615f605, type: 3}
+    Clip: {fileID: 8300000, guid: 7a523c456418d4a41894ff8c5ccbba07, type: 3}
     Volume: 1
     Pitch: 1
     RandomVolume: 0
@@ -43,3 +43,9 @@ MonoBehaviour:
     Pitch: 1
     RandomVolume: 0.3
     RandomPitch: 0.2
+  - Name: hurt
+    Clip: {fileID: 8300000, guid: b8c567a85ba676f41b00a7ab1ba04777, type: 3}
+    Volume: 3
+    Pitch: 1
+    RandomVolume: 0
+    RandomPitch: 0

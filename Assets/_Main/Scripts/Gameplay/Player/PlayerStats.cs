@@ -43,6 +43,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
 
         Health -= amount;
+        GameManager.Instance.SoundManager.PlaySFX("hurt");
+        hurtAni.Hurt();
+        ScreenShake.Shake(0.3f, 0.3f);
+
         isInvisible = true;
         invisibleTimer = InvisibleDuration;
         Debug.Log($"Player took {amount} damage. Remaining health: {Health}");
@@ -54,6 +58,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log("Player has died.");
+        GameManager.Instance.EndGame(false);
     }
 }
