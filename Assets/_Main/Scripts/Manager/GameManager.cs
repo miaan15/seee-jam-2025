@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
     public GameObject TestSprite;
     public Animator LevelCoverAnimator;
 
+    public LevelData[] Levels;
+    public int CurrentLevelIndex = 0;
+
     private void Awake()
     {
         LevelManager = GetComponent<LevelManager>();
@@ -83,7 +86,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadLevel();
+        CurrentLevelIndex = 0;
+        LoadLevel(CurrentLevelIndex, 0f, false);
         askAdd = true;
     }
 
@@ -91,18 +95,28 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            LoadLevel();
+            LoadLevel(CurrentLevelIndex, 0f, false);
         }
     }
 
-    public void LoadLevel(float delay = 0f)
+    public void NextLevel()
     {
-        StartCoroutine(LoadLevelCoroutine(delay));
+        CurrentLevelIndex++;
+        if (CurrentLevelIndex >= Levels.Length)
+        {
+            CurrentLevelIndex = 0;
+            // TODO
+        }
+        LoadLevel(CurrentLevelIndex, .3f);
+    }
+    public void LoadLevel(int id, float delay = 0f, bool ask = true)
+    {
+        StartCoroutine(LoadLevelCoroutine(id, delay, ask));
     }
 
     private bool askAdd = false;
     public bool finishAsk = false;
-    private IEnumerator LoadLevelCoroutine(float delay)
+    private IEnumerator LoadLevelCoroutine(int id, float delay, bool ask)
     {
         finishAsk = false;
 
@@ -130,15 +144,18 @@ public class GameManager : MonoBehaviour
         EnemyWaveManager.RemoveAllEnemies();
         yield return new WaitForEndOfFrame();
 
+        LevelManager.LevelData = Levels[id];
         LevelManager.LoadLevel();
 
         Player.Parameters.GridPosition = LevelManager.LevelData.PlayerStartPos;
         Player.PlayerController.desiredMoveToPos = LevelManager.LevelData.PlayerStartPos;
         Player.transform.position = LayoutPosToPosition(LevelManager.LevelData.PlayerStartPos);
 
+        Player.PlayerStats.Health = Player.Data.Health;
+
         Player.PlayerController.CurrentBeat = 0;
 
-        if (askAdd)
+        if (ask)
         {
             yield return new WaitUntil(() => finishAsk);
         }

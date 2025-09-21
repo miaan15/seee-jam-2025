@@ -39,7 +39,8 @@ public class PlayerManager : MonoBehaviour
         SpriteTransform = transform.GetChild(0);
     }
 
-    private void Start()
+    private void Update()
     {
+        Health.Instance.CurHealth = PlayerStats.Health;
     }
 }

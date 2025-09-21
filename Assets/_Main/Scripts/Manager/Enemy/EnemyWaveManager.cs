@@ -23,6 +23,8 @@ public class EnemyWaveManager : MonoBehaviour
 
         Enemies.Add(enemy);
 
+        resetable = true;
+
         return enemy;
     }
 
@@ -41,5 +43,18 @@ public class EnemyWaveManager : MonoBehaviour
             Destroy(enemy.gameObject);
         }
         Enemies.Clear();
+    }
+
+    private bool resetable = false;
+    public void Update()
+    {
+        if (Enemies.Count == 0)
+        {
+            if (resetable)
+            {
+                resetable = false;
+                GameManager.Instance.NextLevel();
+            }
+        }
     }
 }
